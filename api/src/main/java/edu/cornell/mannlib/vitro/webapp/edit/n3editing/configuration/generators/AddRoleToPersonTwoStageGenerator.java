@@ -415,7 +415,7 @@ public abstract class AddRoleToPersonTwoStageGenerator extends BaseEditConfigura
 
         //make list of type URIs from options, this can be called with null since
 	    //ConstantFieldOptions doesn't use any of the arguments.
-	    Map<String,String> options = fieldOptions.getOptions(null, null, null) ;
+	    Map<String,String> options = fieldOptions.getOptions(null, null, null, null) ;
 
         if (options != null && options.size() > 0) {
             List<String> typeUris = new ArrayList<String>();
@@ -649,11 +649,11 @@ public abstract class AddRoleToPersonTwoStageGenerator extends BaseEditConfigura
     	field.setName(fieldName);
 
     	//get range data type uri and range language
-        String stringDatatypeUri = XSD.xstring.toString();
-        field.setRangeDatatypeUri(stringDatatypeUri);
+        String langStringDatatypeUri = RDF.dtLangString.getURI() ;
+        field.setRangeDatatypeUri(langStringDatatypeUri);
 
     	List<String> validators = new ArrayList<String>();
-    	validators.add("datatype:" + stringDatatypeUri);
+    	validators.add("datatype:" + langStringDatatypeUri);
     	field.setValidators(validators);
 
     	fields.put(field.getName(), field);
@@ -729,11 +729,11 @@ public abstract class AddRoleToPersonTwoStageGenerator extends BaseEditConfigura
 		FieldVTwo field = new FieldVTwo();
     	field.setName(fieldName);
 
-    	String stringDatatypeUri = XSD.xstring.toString();
-        field.setRangeDatatypeUri(stringDatatypeUri);
+    	String langStringDatatypeUri = RDF.dtLangString.getURI();
+        field.setRangeDatatypeUri(langStringDatatypeUri);
 
     	List<String> validators = new ArrayList<String>();
-    	validators.add("datatype:" + stringDatatypeUri);
+    	validators.add("datatype:" + langStringDatatypeUri);
     	field.setValidators(validators);
 
     	fields.put(field.getName(), field);

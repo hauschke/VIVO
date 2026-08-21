@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.XSD;
 
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
@@ -17,6 +18,7 @@ import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.DateTimeWithPrecisio
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.EditConfigurationVTwo;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.ChildVClassesWithParent;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.FieldVTwo;
+import edu.cornell.mannlib.vitro.webapp.i18n.I18n;
 
 public class OrganizationHasPositionHistoryGenerator extends VivoBaseGenerator
 		implements EditConfigurationGenerator {
@@ -226,23 +228,23 @@ public class OrganizationHasPositionHistoryGenerator extends VivoBaseGenerator
 				);
 
 		conf.addField(new FieldVTwo().setName("positionTitle")
-				.setRangeDatatypeUri(XSD.xstring.toString())
+				.setRangeDatatypeUri(RDF.dtLangString.getURI())
 				.setValidators(list("nonempty")));
 
 		//options for existingPerson will be added in browser by auto complete JS
 		conf.addField(new FieldVTwo().setName("existingPerson"));
 
 		conf.addField(new FieldVTwo().setName("personLabel")
-				.setRangeDatatypeUri(XSD.xstring.toString())
-				.setValidators( list("datatype:" + XSD.xstring.toString()) ));
+				.setRangeDatatypeUri(RDF.dtLangString.getURI())
+				.setValidators( list("datatype:" + RDF.dtLangString.getURI()) ));
 
     	conf.addField(new FieldVTwo().setName("firstName")
-    			.setRangeDatatypeUri(XSD.xstring.toString())
-				.setValidators( list("datatype:" + XSD.xstring.toString()) ));
+    			.setRangeDatatypeUri(RDF.dtLangString.getURI())
+				.setValidators( list("datatype:" + RDF.dtLangString.getURI()) ));
 
     	conf.addField(new FieldVTwo().setName("lastName")
-    			.setRangeDatatypeUri(XSD.xstring.toString())
-				.setValidators( list("datatype:" + XSD.xstring.toString()) ));
+    			.setRangeDatatypeUri(RDF.dtLangString.getURI())
+				.setValidators( list("datatype:" + RDF.dtLangString.getURI()) ));
 
     	conf.addField(new FieldVTwo().setName("personLabelDisplay")
     			.setRangeDatatypeUri(XSD.xstring.toString())
@@ -256,7 +258,7 @@ public class OrganizationHasPositionHistoryGenerator extends VivoBaseGenerator
 		conf.addField(endField.setEditElement(new DateTimeWithPrecisionVTwo(
 				endField, URI_PRECISION_YEAR, URI_PRECISION_NONE)));
 
-        conf.addValidator(new FirstAndLastNameValidator("existingPerson"));
+        conf.addValidator(new FirstAndLastNameValidator("existingPerson", I18n.bundle(vreq)));
 		conf.addValidator(new AntiXssValidation());
 		conf.addValidator(new DateTimeIntervalValidationVTwo("startField",
 				"endField"));

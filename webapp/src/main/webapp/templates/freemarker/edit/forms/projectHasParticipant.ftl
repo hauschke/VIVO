@@ -113,6 +113,13 @@ Set this flag on the input acUriReceiver where you would like this behavior to o
             <input  size="30"  type="text" id="firstName" name="firstName" value="${firstNameValue}" ><br />
             <input type="hidden" id="lastName" name="lastName" value="">
             <input class="display" type="hidden" acGroupName="person" id="personDisplay" name="personLabelDisplay" value="${personLabelDisplayValue}" >
+            <br>
+            <span>${i18n().add_to_person_profile} ${requiredHint}</span><br>
+            <input type="radio" id="createVCard" class="radiotypes" name="createVCard" value="n3-pattern:create-vcard-instance"/>
+            <label class="inline" for="createVCard" >${i18n().no_add_to_person_profile}</label>
+            <input type="radio" id="createPersonInstance" class="radiotypes" name="createPersonInstance" value="n3-pattern:create-person-instance" checked />
+            <label class="inline" for="createPersonInstance" >${i18n().yes_add_to_person_profile}</label>
+            
     </p>
 
     <div class="acSelection" acGroupName="person">
@@ -153,24 +160,27 @@ var customFormData  = {
     subjectName: '${editConfiguration.subjectName}'
 };
 var i18nStrings = {
-    selectAnExisting: '${i18n().select_an_existing}',
-    orCreateNewOne: '${i18n().or_create_new_one}',
-    selectedString: '${i18n().selected}'
+    selectAnExisting: '${i18n().select_an_existing?js_string}',
+    selectAnExistingOrCreateNewOne: '${i18n().select_an_existing_or_create_a_new_one?js_string}',
+    selectedString: '${i18n().selected?js_string}'
 };
 
 $(document).ready(function() {
     projectHasParticipantUtils.onLoad('${blankSentinel}');
+    $('input[type=radio].radiotypes').on("change", function() {
+	    $('input[type=radio].radiotypes:checked').not(this).prop('checked', false);
+    });
 });
 </script>
 
 </section>
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customFormWithAutocomplete.css" />')}
 
 
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/extensions/String.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>',

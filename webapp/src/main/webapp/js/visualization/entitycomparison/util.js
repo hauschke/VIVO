@@ -42,34 +42,34 @@ $.extend(this, i18nStringsUtil);
             nPaging.appendChild(nNext);
             nPaging.appendChild(nLast);
 
-            $(nFirst).click(function () {
+            $(nFirst).on("click", function () {
                 if (oSettings.oApi._fnPageChange(oSettings, "first")) {
                     fnCallbackDraw(oSettings);
                 }
             });
 
-            $(nPrevious).click(function () {
+            $(nPrevious).on("click", function () {
                 if (oSettings.oApi._fnPageChange(oSettings, "previous")) {
                     fnCallbackDraw(oSettings);
                 }
             });
 
-            $(nNext).click(function () {
+            $(nNext).on("click", function () {
                 if (oSettings.oApi._fnPageChange(oSettings, "next")) {
                     fnCallbackDraw(oSettings);
                 }
             });
 
-            $(nLast).click(function () {
+            $(nLast).on("click", function () {
                 if (oSettings.oApi._fnPageChange(oSettings, "last")) {
                     fnCallbackDraw(oSettings);
                 }
             });
 
             /* Take the brutal approach to cancelling text selection */
-            $('span', nPaging).bind('mousedown', function () {
+            $('span', nPaging).on('mousedown', function () {
                 return false;
-            }).bind('selectstart', function () {
+            }).on('selectstart', function () {
                 return false;
             });
 
@@ -1069,7 +1069,7 @@ function prepareTableForDataTablePagination(jsonData, dataTableParams){
 
 //	console.log(processJSONData.currentEntityLevel);
 
-	if (processJSONData.currentEntityLevel.toUpperCase() === "ORGANIZATIONS AND PEOPLE") {
+	if (processJSONData.currentEntityLevel === i18nStringsGuiEvents.organizationsAndPeople) {
 		$.fn.dataTableExt.afnFiltering.push(DatatableCustomFilters.peopleOrOrganizations);
 	}
 
@@ -1157,7 +1157,8 @@ function prepareTableForDataTablePagination(jsonData, dataTableParams){
 	    "iDisplayLength": 10,
 	    "bInfo": true,
 	    "oLanguage": {
-			"sInfo": "Records _START_ - _END_ of _TOTAL_",
+			"sInfo": i18nStringsUtil.recordsStartEndOfTotal,
+			"sSearch": i18nStringsUtil.searchButton,
 			"sInfoEmpty": i18nStringsUtil.noMatchingEntities,
 			"sInfoFiltered": ""
 		},
@@ -1193,7 +1194,7 @@ function prepareTableForDataTablePagination(jsonData, dataTableParams){
  */
 function reloadDataTablePagination(preselectedEntityURIs, jsonData){
 
-	if (processJSONData.currentEntityLevel.toUpperCase() === "ORGANIZATIONS AND PEOPLE") {
+	if (processJSONData.currentEntityLevel === i18nStringsGuiEvents.organizationsAndPeople) {
 
 		/*
 		 * This will make sure that duplicate filters are not added.

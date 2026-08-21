@@ -9,6 +9,8 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
+
+import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
 import edu.cornell.mannlib.vitro.webapp.rdfservice.RDFService;
 import edu.cornell.mannlib.vitro.webapp.rdfservice.ResultSetConsumer;
 import edu.cornell.mannlib.vitro.webapp.visualization.constants.QueryConstants;
@@ -232,13 +234,37 @@ final public class VisualizationCaches {
                     new CachingRDFServiceExecutor.RDFServiceCallable<Map<String, String>>(visualizationAffinity) {
                         @Override
                         protected Map<String, String> callWithService(RDFService rdfService) throws Exception {
+                            // get current selected language tag
+                            VitroRequest vreq = rdfService.getVitroRequest();
+                            String langCtx = "en-US"; // set default
+                            String language = "en"; // set fallback language
+                            try {
+                                langCtx = language = vreq.getLocale().getLanguage();
+                                if (!vreq.getLocale().getCountry().isEmpty()) {
+                                    langCtx += "-" + vreq.getLocale().getCountry();
+                                }
+                            } catch (Exception e) { }
+
                             String query = QueryConstants.getSparqlPrefixQuery() +
-                                    "SELECT ?org ?orgLabel\n" +
+                                    "SELECT ?org (Min(?orgLabel_) AS ?orgLabel) \n" +
                                     "WHERE\n" +
                                     "{\n" +
-                                    "  ?org a foaf:Organization .\n" +
-                                    "  ?org rdfs:label ?orgLabel .\n" +
-                                    "}\n";
+                                    "  ?org a foaf:Organization \n" +
+                                    "  OPTIONAL { ?org rdfs:label ?orgLabelPrimary . \n" +
+                                    "       FILTER (langMatches(LANG(?orgLabelPrimary), '" + langCtx + "')) \n" +
+                                    "} \n" +
+                                    "  OPTIONAL { ?org rdfs:label ?orgLabelSecondary . \n" +
+                                    "       FILTER (langMatches(LANG(?orgLabelSecondary), '" + language + "')) \n" +
+                                    "} \n" +
+                                    "  OPTIONAL { ?org rdfs:label ?orgLabelTertiary .\n" +
+                                    "       FILTER (STRBEFORE(lcase(STR(LANG(?orgLabelTertiary))), '-') = '" + language.toLowerCase() + "') \n" +
+                                    "} \n" +
+                                    "  OPTIONAL { ?org rdfs:label ?orgLabelFallback .\n" +
+                                    "       FILTER (lcase(STR(LANG(?orgLabelFallback))) != '" + langCtx.toLowerCase() + "' \n" + 
+                                    "           && lcase(STR(LANG(?orgLabelFallback))) != '" + language.toLowerCase() + "') \n" +
+                                    "} \n" +
+                                    "BIND(COALESCE(?orgLabelPrimary, ?orgLabelSecondary, ?orgLabelTertiary, ?orgLabelFallback) AS ?orgLabel_) \n" +
+                                    "} GROUP BY ?org \n";
 
                             final Map<String, String> map = new HashMap<>();
 
@@ -246,7 +272,11 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String org      = qs.getResource("org").getURI();
-                                    String orgLabel = qs.getLiteral("orgLabel").getString();
+                                    Literal labelLiteral = qs.getLiteral("orgLabel");
+                                    if (labelLiteral == null) {
+                                    	return;
+                                    }
+                                    String orgLabel = labelLiteral.getString();
 
                                     map.put(org.intern(), orgLabel.intern());
                                 }
@@ -320,7 +350,11 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String org = qs.getResource("org").getURI();
-                                    String typeLabel  = qs.getLiteral("typeLabel").getString();
+                                    Literal labelLiteral = qs.getLiteral("typeLabel");
+                                    if (labelLiteral == null) {
+                                    	return;
+                                    }
+                                    String typeLabel  = labelLiteral.getString();
                                     map.put(org.intern(), typeLabel.intern());
                                 }
                             });
@@ -390,6 +424,16 @@ final public class VisualizationCaches {
                     new CachingRDFServiceExecutor.RDFServiceCallable<ConceptLabelMap>() {
                         @Override
                         protected ConceptLabelMap callWithService(RDFService rdfService) throws Exception {
+                            VitroRequest vreq = rdfService.getVitroRequest();
+                            String langCtx = "en-US";
+                            // UQAM-Optimization Adjust to linguistic context
+                            try {
+                                langCtx  = vreq.getLocale().getLanguage();
+                                if (!vreq.getLocale().getCountry().isEmpty()) {
+                                    langCtx += "-" + vreq.getLocale().getCountry();
+                                }
+                            } catch (Exception e) {
+                            }
                             String query = QueryConstants.getSparqlPrefixQuery() +
                                     "SELECT ?concept ?label\n" +
                                     "WHERE\n" +
@@ -397,17 +441,36 @@ final public class VisualizationCaches {
                                     "    ?person a foaf:Person .\n" +
                                     "    ?person core:hasResearchArea ?concept .\n" +
                                     "    ?concept a skos:Concept .\n" +
-                                    "    ?concept rdfs:label ?label .\n" +
+                                    "  OPTIONAL {  "  +
+                                    "       ?concept rdfs:label ?labelPrimary . \n" +
+                                    "       FILTER (langMatches(LANG(?labelPrimary), '" + langCtx + "')) \n" +
+                                    "  } \n" +
+                                    "  OPTIONAL {  "  +
+                                    "       ?concept rdfs:label ?labelFallback1 . \n" +
+                                    "       FILTER (langMatches(LANG(?labelFallback1), 'en-US')) \n" +
+                                    "  } \n" +
+                                    "  OPTIONAL {  "  +
+                                    "       ?concept rdfs:label ?labelFallback2 . \n" +
+                                    "       FILTER (langMatches(LANG(?labelFallback2), 'en')) \n" +
+                                    "  } \n" +
+                                    "  OPTIONAL {  "  +
+                                    "       ?concept rdfs:label ?labelFallback3 . \n" +
+                                    "       FILTER (langMatches(LANG(?labelFallback3), '')) \n" +
+                                    "  } \n" +
+                                    "BIND(COALESCE(?labelPrimary, ?labelFallback1, ?labelFallback2, ?labelFallback3) AS ?label) \n" +
                                     "}\n";
 
 //                            final Map<String, String> map = new HashMap<>();
                             final ConceptLabelMap map = new ConceptLabelMap();
-
+                            
                             rdfService.sparqlSelectQuery(query, new ResultSetConsumer() {
-                                @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String conceptURI = qs.getResource("concept").getURI().intern();
-                                    String label  = qs.getLiteral("label").getString().intern();
+                                    Literal labelLiteral = qs.getLiteral("label");
+                                    if (labelLiteral == null) {
+                                    	return;
+                                    }
+                                    String label  = labelLiteral.getString().intern();
                                     String labelLower = label.toLowerCase().intern();
 
                                     map.conceptToLabel.put(conceptURI, label);
@@ -501,8 +564,11 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String person      = qs.getResource("person").getURI();
-                                    String personLabel = qs.getLiteral("personLabel").getString();
-
+                                    Literal labelLiteral = qs.getLiteral("personLabel");
+                                    if (labelLiteral == null) {
+                                    	return;
+                                    }
+                                    String personLabel  = labelLiteral.getString();
                                     map.put(person.intern(), personLabel.intern());
                                 }
                             });
@@ -535,7 +601,11 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String person = qs.getResource("person").getURI();
-                                    String typeLabel  = qs.getLiteral("typeLabel").getString();
+                                    Literal labelLiteral = qs.getLiteral("typeLabel");
+                                    if (labelLiteral == null) {
+                                    	return;
+                                    }
+                                    String typeLabel  = labelLiteral.getString();
                                     map.put(person.intern(), String.valueOf(typeLabel).intern());
                                 }
                             });
@@ -609,8 +679,11 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String document      = qs.getResource("document").getURI();
-                                    String journalLabel = qs.getLiteral("journalLabel").getString();
-
+                                    Literal labelLiteral = qs.getLiteral("journalLabel");
+                                    if (labelLiteral == null) {
+                                    	return;
+                                    }
+                                    String journalLabel  = labelLiteral.getString();
                                     map.put(document.intern(), journalLabel.intern());
                                 }
                             });
@@ -643,15 +716,19 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String document = qs.getResource("document").getURI();
-                                    String pubDate  = qs.getLiteral("publicationDate").getString();
-                                    if (pubDate != null) {
-                                        DateTime validParsedDateTimeObject = UtilityFunctions
-                                                .getValidParsedDateTimeObject(pubDate);
-
-                                        if (validParsedDateTimeObject != null) {
-                                            map.put(document.intern(), String.valueOf(validParsedDateTimeObject.getYear()).intern());
-                                        }
+                                    Literal dateLiteral = qs.getLiteral("publicationDate");
+                                    if (dateLiteral == null) {
+                                    	return;
                                     }
+                                    String pubDate = dateLiteral.getString();
+                                    if (pubDate == null) {
+                                    	return;
+                                    }
+                                    DateTime validParsedDateTimeObject = UtilityFunctions.getValidParsedDateTimeObject(pubDate);
+                                    if (validParsedDateTimeObject == null) {
+                                    	return;
+                                    }
+                                    map.put(document.intern(), String.valueOf(validParsedDateTimeObject.getYear()).intern());
                                 }
                             });
 
@@ -731,15 +808,19 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String grant = qs.getResource("grant").getURI();
-                                    String startDate  = qs.getLiteral("startDateTimeValue").getString();
-                                    if (startDate != null) {
-                                        DateTime validParsedDateTimeObject = UtilityFunctions
-                                                .getValidParsedDateTimeObject(startDate);
-
-                                        if (validParsedDateTimeObject != null) {
-                                            map.put(grant.intern(), String.valueOf(validParsedDateTimeObject.getYear()).intern());
-                                        }
+                                    Literal dateLiteral = qs.getLiteral("startDateTimeValue");
+                                    if (dateLiteral == null) {
+                                        return;
                                     }
+                                    String startDate = dateLiteral.getString();
+                                    if (startDate == null) {
+                                    	return;
+                                    }
+                                    DateTime validParsedDateTimeObject = UtilityFunctions.getValidParsedDateTimeObject(startDate);
+                                    if (validParsedDateTimeObject == null) {
+                                    	return;
+                                    }
+                                    map.put(grant.intern(), String.valueOf(validParsedDateTimeObject.getYear()).intern());
                                 }
                             });
 
@@ -773,15 +854,19 @@ final public class VisualizationCaches {
                                 @Override
                                 protected void processQuerySolution(QuerySolution qs) {
                                     String grant = qs.getResource("grant").getURI();
-                                    String startDate  = qs.getLiteral("startDateTimeValue").getString();
-                                    if (startDate != null) {
-                                        DateTime validParsedDateTimeObject = UtilityFunctions
-                                                .getValidParsedDateTimeObject(startDate);
-
-                                        if (validParsedDateTimeObject != null) {
-                                            map.put(grant.intern(), String.valueOf(validParsedDateTimeObject.getYear()).intern());
-                                        }
+                                    Literal dateLiteral = qs.getLiteral("startDateTimeValue");
+                                    if (dateLiteral == null) {
+                                    	return;
                                     }
+                                    String startDate  = dateLiteral.getString();
+                                    if (startDate == null) {
+                                    	return;
+                                    }
+                                    DateTime validParsedDateTimeObject = UtilityFunctions.getValidParsedDateTimeObject(startDate);
+                                    if (validParsedDateTimeObject == null) {
+                                    	return;
+                                    }
+                                    map.put(grant.intern(), String.valueOf(validParsedDateTimeObject.getYear()).intern());
                                 }
                             });
 

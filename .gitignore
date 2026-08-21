@@ -20,3 +20,11 @@ utilities/rdbmigration/.work
 **/.classpath
 **/.project
 **/bin/
+
+vivo-cores/
+vivo-home/
+
+.fake
+.ionide
+
+.vscode

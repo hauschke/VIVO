@@ -21,7 +21,7 @@
 
 <#assign coAuthorIcon = '${urls.images}/visualization/coauthorship/co_author_icon.png'>
 
-<#assign googleVisualizationAPI = 'https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22visualization%22%2C%22version%22%3A%221%22%2C%22packages%22%3A%5B%22areachart%22%2C%22imagesparkline%22%5D%7D%5D%7D'>
+<#assign googleVisualizationAPI = 'https://www.gstatic.com/charts/loader.js'>
 <#assign coInvestigatorPersonLevelJavaScript = '${urls.base}/js/visualization/coPIship/coPIship-person-level.js'>
 <#assign commonPersonLevelJavaScript = '${urls.base}/js/visualization/personlevel/person-level.js'>
 
@@ -42,16 +42,16 @@ var visualizationDataRoot = "${dataVisualizationURLRoot}";
 
 // -->
 var i18nStringsCoPi = {
-    coInvestigatorString: '${i18n().co_investigators_capitalized}',
-    investigatorString: '${i18n().investigator_capitalized}',
-    grantsWithString: '${i18n().grants_with}',
-    grantsCapitalized: '${i18n().grant_s_capitalized}',
-    coInvestigatorCapitalized: '${i18n().co_investigator_s_capitalized}'
+    coInvestigatorString: '${i18n().co_investigators_capitalized?js_string}',
+    investigatorString: '${i18n().investigator_capitalized?js_string}',
+    grantsWithString: '${i18n().grants_with?js_string}',
+    grantsCapitalized: '${i18n().grant_s_capitalized?js_string}',
+    coInvestigatorCapitalized: '${i18n().co_investigator_s_capitalized?js_string}'
 };
 var i18nStringsPersonLvl = {
-    fileCapitalized: '${i18n().file_capitalized}',
-    contentRequiresFlash: '${i18n().content_requires_flash}',
-    getFlashString: '${i18n().get_flash}'
+    fileCapitalized: '${i18n().file_capitalized?js_string}',
+    contentRequiresFlash: '${i18n().content_requires_flash?js_string}',
+    getFlashString: '${i18n().get_flash?js_string}'
 };
 </script>
 
@@ -75,7 +75,7 @@ $(document).ready(function(){
     processProfileInformation("ego_label",
                               "ego_moniker",
                               "ego_profile_image",
-                              jQuery.parseJSON(getWellFormedURLs("${egoURIParam}", "profile_info")));
+                              JSON.parse(getWellFormedURLs("${egoURIParam}", "profile_info")));
 
     <#if (numOfCoInvestigations?? && numOfCoInvestigations <= 0) || (numOfInvestigators?? && numOfInvestigators <= 0) >
             if ($('#ego_label').text().length > 0) {

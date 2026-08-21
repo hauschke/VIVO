@@ -132,7 +132,6 @@ Set this flag on the input acUriReceiver where you would like this behavior to o
         <#--TODO: Check if possible to have existing publication options here in order to select-->
     <p class="inline"><label for="typeSelector">${i18n().publication_type}<#if editMode != "edit"> ${requiredHint}<#else>:</#if></label>
         <select id="typeSelector" name="pubType" acGroupName="publication" >
-             <option value="" <#if (publicationTypeValue?length = 0)>selected="selected"</#if>>${i18n().select_one}</option>
              <#list pubTypeLiteralOptions?keys as key>
                  <option value="${key}" <#if (publicationTypeValue = key)>selected="selected"</#if>>${pubTypeLiteralOptions[key]}</option>
              </#list>
@@ -325,9 +324,9 @@ Set this flag on the input acUriReceiver where you would like this behavior to o
         flagClearLabelForExisting: '${flagClearLabelForExisting}'
     };
     var i18nStrings = {
-        selectAnExisting: '${i18n().select_an_existing}',
-        orCreateNewOne: '${i18n().or_create_new_one}',
-        selectedString: '${i18n().selected}'
+        selectAnExisting: '${i18n().select_an_existing?js_string}',
+        selectAnExistingOrCreateNewOne: '${i18n().select_an_existing_or_create_a_new_one?js_string}',
+        selectedString: '${i18n().selected?js_string}'
     };
     </script>
 
@@ -339,12 +338,12 @@ Set this flag on the input acUriReceiver where you would like this behavior to o
 </section>
 </#if>
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
  ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
  ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customFormWithAutocomplete.css" />')}
 
 
- ${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+ ${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>',
               '<script type="text/javascript" src="${urls.base}/templates/freemarker/edit/forms/js/publicationToPersonUtils.js"></script>',

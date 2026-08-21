@@ -58,7 +58,7 @@ public class AgrovocService implements ExternalConceptService {
 	protected final String dbpedia_endpoint = " http://dbpedia.org/sparql";
 	// URL to get all the information for a concept
 
-	protected final String conceptSkosMosBase = "http://agrovoc.uniroma2.it/agrovoc/rest/v1/";
+	protected final String conceptSkosMosBase = "https://agrovoc.fao.org/browse/rest/v1/";
 	protected final String conceptsSkosMosSearch = conceptSkosMosBase + "search?";
 	protected final String conceptSkosMosURL = conceptSkosMosBase + "data?";
 	@Override
@@ -260,7 +260,7 @@ public class AgrovocService implements ExternalConceptService {
 				+ "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\n"
 				+ "SELECT DISTINCT ?description WHERE { \n" + "<" + uri
 				+ "> rdfs:comment ?description . \n"
-				+ "FILTER (LANG(?description)='en' ) \n" + "}";
+				+ "FILTER (langMatches(LANG(?description), 'en')) \n" + "}";
 		// System.out.println(qs);
 		List<HashMap> resultList = new ArrayList<>();
 		QueryExecution qexec = null;

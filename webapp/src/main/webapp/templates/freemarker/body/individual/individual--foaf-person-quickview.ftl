@@ -62,7 +62,7 @@
                 <div id="photo-wrapper">${individualImage}</div>
                 <h1 itemprop="name" class="vcard foaf-person fn" <#if !editable>style="float:left;border-right:1px solid #A6B1B0;"</#if>>
                     <#-- Label -->
-                    <@p.label individual editable labelCount localesCount/>
+                    <@p.label individual editable labelCount localesCount languageCount />
                 </h1>
                 <#--  Display preferredTitle if it exists; otherwise mostSpecificTypes -->
                 <#assign title = propertyGroups.pullProperty("http://purl.obolibrary.org/obo/ARG_2000028","http://www.w3.org/2006/vcard/ns#Title")!>
@@ -70,7 +70,7 @@
                     <#if (title.statements?size < 1) >
                         <@p.addLinkWithLabel title editable />
                     <#elseif editable>
-                        <h2 id="preferredTitle">${title.name?capitalize!}</h2>
+                        <h2 id="preferredTitle">${title.name}</h2>
                         <@p.verboseDisplay title />
                     </#if>
                     <#list title.statements as statement>
@@ -220,19 +220,19 @@ var profileTypeData = {
     defaultProfileType: '${profileType!}'
 };
 var i18nStrings = {
-    errorProcessingTypeChange: '${i18n().error_processing_type_change}',
-    displayLess: '${i18n().display_less}',
-    displayMoreEllipsis: '${i18n().display_more_ellipsis}',
-    showMoreContent: '${i18n().show_more_content}',
-    verboseTurnOff: '${i18n().verbose_turn_off}',
-    quickviewTooltip: '${i18n().quickview_tooltip}',
-    researchAreaTooltipOne: '${i18n().research_area_tooltip_one}',
-    researchAreaTooltipTwo: '${i18n().research_area_tooltip_two}'
+    errorProcessingTypeChange: '${i18n().error_processing_type_change?js_string}',
+    displayLess: '${i18n().display_less?js_string}',
+    displayMoreEllipsis: '${i18n().display_more_ellipsis?js_string}',
+    showMoreContent: '${i18n().show_more_content?js_string}',
+    verboseTurnOff: '${i18n().verbose_turn_off?js_string}',
+    quickviewTooltip: '${i18n().quickview_tooltip?js_string}',
+    researchAreaTooltipOne: '${i18n().research_area_tooltip_one?js_string}',
+    researchAreaTooltipTwo: '${i18n().research_area_tooltip_two?js_string}'
 };
 var i18nStringsUriRdf = {
-    shareProfileUri: '${i18n().share_profile_uri}',
-    viewRDFProfile: '${i18n().view_profile_in_rdf}',
-    closeString: '${i18n().close}'
+    shareProfileUri: '${i18n().share_profile_uri?js_string}',
+    viewRDFProfile: '${i18n().view_profile_in_rdf?js_string}',
+    closeString: '${i18n().close?js_string}'
 };
 </script>
 <#if editable>
@@ -250,18 +250,20 @@ var i18nStringsUriRdf = {
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual.css" />',
                   '<link rel="stylesheet" href="${urls.base}/css/individual/individual-vivo.css" />',
                   '<link rel="stylesheet" href="${urls.base}/css/individual/individual-quick-view.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />',
-                  '<link rel="stylesheet" type="text/css" href="${urls.base}/css/jquery_plugins/qtip/jquery.qtip.min.css" />')}
+	              '<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/tiny_mce/tiny_mce.js"></script>',
-                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip.min.js"></script>',
                   '<script type="text/javascript" src="${urls.base}/js/amplify/amplify.store.min.js"></script>',
                   '<script type="text/javascript" src="${urls.base}/js/json2.js"></script>',
-                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>')}
+                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>',
+                  
+                  '<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.core.umd.js"></script>',
+                  '<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.dom.umd.js"></script>',
+                  '<script type="text/javascript" src="${urls.base}/js/tooltip/tooltip-utils.js"></script>')}
 
 ${scripts.add('<script async type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>',
-              '<script async type="text/javascript" src="${urls.base}/js/individual/individualQtipBubble.js"></script>',
-              '<script async type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+              '<script async type="text/javascript" src="${urls.base}/js/individual/individualTooltipBubble.js"></script>',
+              '<script async type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
               '<script async type="text/javascript" src="${urls.base}/js/individual/individualUtils.js"></script>',
               '<script async type="text/javascript" src="${urls.base}/js/individual/moreLessController.js"></script>',
               '<script async type="text/javascript" src="${urls.base}/js/individual/individualProfilePageType.js"></script>',
@@ -270,5 +272,5 @@ ${scripts.add('<script async type="text/javascript" src="${urls.base}/js/individ
               '<script async type="text/javascript" src="//cdn.plu.mx/widget-popup.js"></script>')}
 
 <script type="text/javascript">
-    i18n_confirmDelete = "${i18n().confirm_delete}";
+    i18n_confirmDelete = "${i18n().confirm_delete?js_string}";
 </script>

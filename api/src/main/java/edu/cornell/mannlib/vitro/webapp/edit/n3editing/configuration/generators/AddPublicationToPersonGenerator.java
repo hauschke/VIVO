@@ -17,6 +17,7 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.resultset.ResultSetMem;
+import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.XSD;
 
 import edu.cornell.mannlib.vitro.webapp.beans.Individual;
@@ -28,9 +29,10 @@ import edu.cornell.mannlib.vitro.webapp.edit.n3editing.PersonHasPublicationValid
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.DateTimeWithPrecisionVTwo;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.EditConfigurationUtils;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.EditConfigurationVTwo;
-import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.ConstantFieldOptions;
+import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.FieldOptions;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.FieldVTwo;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.validators.AntiXssValidation;
+import edu.cornell.mannlib.vitro.webapp.i18n.I18n;
 import edu.cornell.mannlib.vitro.webapp.modelaccess.ModelAccess;
 import edu.cornell.mannlib.vitro.webapp.utils.FrontEndEditingUtils.EditMode;
 import edu.cornell.mannlib.vitro.webapp.utils.generators.EditModeUtils;
@@ -61,6 +63,7 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     final static String dateTimeValue = vivoCore + "dateTime";
     final static String dateTimePrecision = vivoCore + "dateTimePrecision";
     final static String relatesPred = vivoCore + "relates";
+    private final String langStringDatatypeUri =  RDF.dtLangString.getURI();
 
     public AddPublicationToPersonGenerator() {}
 
@@ -624,7 +627,8 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
 
     private void setFields(EditConfigurationVTwo editConfiguration, VitroRequest vreq) throws Exception {
         setTitleField(editConfiguration);
-        setPubTypeField(editConfiguration);
+		//UQAM-Linguistic-Management needs for getting appropriated value in the linguistic context
+		setPubTypeField(editConfiguration, vreq);
         setPubUriField(editConfiguration);
         setCollectionLabelField(editConfiguration);
         setCollectionDisplayField(editConfiguration);
@@ -657,20 +661,20 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setTitleField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("title").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
-    private void setPubTypeField(EditConfigurationVTwo editConfiguration) throws Exception {
-        editConfiguration.addField(new FieldVTwo().
-                setName("pubType").
-                setValidators( list("nonempty") ).
-                setOptions( new ConstantFieldOptions("pubType", getPublicationTypeLiteralOptions() ))
-                );
-    }
+	//UQAM-Linguistic-Management add vreq to get linguistic context
+	private void setPubTypeField(EditConfigurationVTwo editConfiguration, VitroRequest vreq) throws Exception {
+		editConfiguration.addField(new FieldVTwo().
+				setName("pubType").
+				setValidators( list("nonempty") ).
+				setOptions( getPublicationTypeLiteralOptions(vreq) )
+				);
+	}
 
     private void setPubUriField(EditConfigurationVTwo editConfiguration) {
         editConfiguration.addField(new FieldVTwo().
@@ -678,11 +682,10 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setCollectionLabelField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("collection").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setCollectionDisplayField(EditConfigurationVTwo editConfiguration) {
@@ -699,11 +702,10 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setBookLabelField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("book").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setBookDisplayField(EditConfigurationVTwo editConfiguration) {
@@ -720,11 +722,10 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setConferenceLabelField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("conference").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setConferenceDisplayField(EditConfigurationVTwo editConfiguration) {
@@ -741,11 +742,10 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setEventLabelField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("event").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setEventDisplayField(EditConfigurationVTwo editConfiguration) {
@@ -758,19 +758,17 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
 
 
     private void setFirstNameField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("firstName").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setLastNameField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("lastName").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
     private void setEventUriField(EditConfigurationVTwo editConfiguration) {
         editConfiguration.addField(new FieldVTwo().
@@ -778,11 +776,10 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setEditorLabelField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("editor").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setEditorDisplayField(EditConfigurationVTwo editConfiguration) {
@@ -799,11 +796,10 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setPublisherLabelField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("publisher").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setPublisherDisplayField(EditConfigurationVTwo editConfiguration) {
@@ -820,59 +816,52 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
     }
 
     private void setLocaleField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("locale").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setVolumeField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("volume").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setNumberField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("number").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setIssueField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("issue").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setChapterNbrField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("chapterNbr").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setStartPageField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("startPage").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setEndPageField(EditConfigurationVTwo editConfiguration) {
-        String stringDatatypeUri = XSD.xstring.toString();
         editConfiguration.addField(new FieldVTwo().
                 setName("endPage").
-                setValidators(list("datatype:" + stringDatatypeUri)).
-                setRangeDatatypeUri(stringDatatypeUri));
+                setValidators(list("datatype:" + langStringDatatypeUri)).
+                setRangeDatatypeUri(langStringDatatypeUri));
     }
 
     private void setDateTimeField(EditConfigurationVTwo editConfiguration) {
@@ -886,39 +875,40 @@ public class AddPublicationToPersonGenerator extends VivoBaseGenerator implement
                 );
     }
 
-    private List<List<String>> getPublicationTypeLiteralOptions() {
-        List<List<String>> literalOptions = new ArrayList<List<String>>();
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Abstract", "Abstract"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/AcademicArticle", "Academic Article"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Article", "Article"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/AudioDocument", "Audio Document"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#BlogPosting", "Blog Posting"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Book", "Book"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#CaseStudy", "Case Study"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Catalog", "Catalog"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Chapter", "Chapter"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#ConferencePaper", "Conference Paper"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#ConferencePoster", "Conference Poster"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Database", "Database"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Dataset", "Dataset"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/EditedBook", "Edited Book"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#EditorialArticle", "Editorial Article"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Film", "Film"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Newsletter", "Newsletter"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#NewsRelease", "News Release"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Patent", "Patent"));
-        literalOptions.add(list("http://purl.obolibrary.org/obo/OBI_0000272", "Protocol"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Report", "Report"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#ResearchProposal", "Research Proposal"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Review", "Review"));
-        literalOptions.add(list("http://purl.obolibrary.org/obo/ERO_0000071 ", "Software"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Speech", "Speech"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Thesis", "Thesis"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#Video", "Video"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Webpage", "Webpage"));
-        literalOptions.add(list("http://purl.org/ontology/bibo/Website", "Website"));
-        literalOptions.add(list("http://vivoweb.org/ontology/core#WorkingPaper", "Working Paper"));
-        return literalOptions;
+    private FieldOptions getPublicationTypeLiteralOptions(VitroRequest vreq) throws Exception {
+        return GeneratorUtil.buildResourceAndLabelFieldOptions(
+                vreq.getRDFService(), vreq.getWebappDaoFactory(), "", 
+                I18n.bundle(vreq).text("select_type"),		
+                "http://vivoweb.org/ontology/core#Abstract",
+                "http://purl.org/ontology/bibo/AcademicArticle",
+                "http://purl.org/ontology/bibo/Article",
+                "http://purl.org/ontology/bibo/AudioDocument",
+                "http://vivoweb.org/ontology/core#BlogPosting",
+                "http://purl.org/ontology/bibo/Book",
+                "http://vivoweb.org/ontology/core#CaseStudy",
+                "http://vivoweb.org/ontology/core#Catalog",
+                "http://purl.org/ontology/bibo/Chapter",
+                "http://vivoweb.org/ontology/core#ConferencePaper",
+                "http://vivoweb.org/ontology/core#ConferencePoster",
+                "http://vivoweb.org/ontology/core#Database",
+                "http://vivoweb.org/ontology/core#Dataset",
+                "http://purl.org/ontology/bibo/EditedBook",
+                "http://vivoweb.org/ontology/core#EditorialArticle",
+                "http://purl.org/ontology/bibo/Film",
+                "http://vivoweb.org/ontology/core#Newsletter",
+                "http://vivoweb.org/ontology/core#NewsRelease",
+                "http://purl.org/ontology/bibo/Patent",
+                "http://purl.obolibrary.org/obo/OBI_0000272",
+                "http://purl.org/ontology/bibo/Report",
+                "http://vivoweb.org/ontology/core#ResearchProposal",
+                "http://vivoweb.org/ontology/core#Review",
+                "http://purl.obolibrary.org/obo/ERO_0000071 ",
+                "http://vivoweb.org/ontology/core#Speech",
+                "http://purl.org/ontology/bibo/Thesis",
+                "http://vivoweb.org/ontology/core#Video",
+                "http://purl.org/ontology/bibo/Webpage",
+                "http://purl.org/ontology/bibo/Website",
+                "http://vivoweb.org/ontology/core#WorkingPaper");
     }
 
     //Form specific data

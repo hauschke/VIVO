@@ -50,16 +50,15 @@
 <form class="customForm" action ="${submitUrl}">
 	<input type="hidden" name="rangeUri" value="${editConfiguration.rangeUri!}">
 	<input type="hidden" name="domainUri" value="${editConfiguration.domainUri!}">
+	<input type="hidden" name="fauxContextUri" value="${editConfiguration.pageData.fauxContextUri!}">
 
     <label for="urlType">${i18n().url_type}${requiredHint}</label>
     <#assign urlTypeOpts = editConfiguration.pageData.urlType />
     <select name="urlType" style="margin-top:-2px" >
-        <#list urlTypeOpts?keys as key>
-            <option value="${key}"  <#if editMode == "add" && urlTypeOpts[key] == "Other">selected<#elseif urlTypeValue == key>selected</#if> >
+        <#list urlTypeOpts?keys?reverse as key>
+            <option value="${key}" >
                 <#if urlTypeOpts[key] == "F1000 Link">
                     ${i18n().faculty_of_1000}
-                <#elseif urlTypeOpts[key] == "Other">
-                    ${i18n().standard_web_link}
                 <#else>
                     ${urlTypeOpts[key]}
                 </#if>

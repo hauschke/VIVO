@@ -39,21 +39,21 @@
                 var onlyUnknownYearGrants = false;
 
                 var data = new google.visualization.DataTable();
-                data.addColumn('string', '${i18n().year_capitalized}');
+                data.addColumn('number', '${i18n().year_capitalized}');
                 data.addColumn('number', '${i18n().grants_capitalized}');
                 data.addRows(${sparklineVO.yearToEntityCountDataTable?size});
 
                 var knownYearGrantCounts = 0;
 
                 <#list sparklineVO.yearToEntityCountDataTable as yearToGrantCountDataElement>
-                    data.setValue(${yearToGrantCountDataElement.yearToEntityCounter}, 0, '${yearToGrantCountDataElement.year}');
+                    data.setValue(${yearToGrantCountDataElement.yearToEntityCounter}, 0, ${yearToGrantCountDataElement.year});
+                    data.setFormattedValue(${yearToGrantCountDataElement.yearToEntityCounter}, 0, '${yearToGrantCountDataElement.year}');
                     data.setValue(${yearToGrantCountDataElement.yearToEntityCounter}, 1, ${yearToGrantCountDataElement.currentEntitiesCount});
                     knownYearGrantCounts += ${yearToGrantCountDataElement.currentEntitiesCount};
                 </#list>
 
                 <#-- Create a view of the data containing only the column pertaining to grant count. -->
                 var sparklineDataView = new google.visualization.DataView(data);
-                sparklineDataView.setColumns([1]);
 
                 <#if sparklineVO.shortVisMode>
 
@@ -70,7 +70,6 @@
 
                 </#if>
 
-
                 /*
                 This means that all the publications have unknown years & we do not need to display
                 the sparkline.
@@ -81,58 +80,33 @@
 
                 } else {
 
-                /*
-                Test if we want to go for the approach when serving visualizations from a secure site..
-                If "https:" is not found in location.protocol then we do everything normally.
-                */
-                if (location.protocol.indexOf("https") == -1) {
-                    /*
-                    This condition will make sure that the location protocol (http, https, etc) does not have
-                    for word https in it.
-                    */
-
-                <#-- Create the vis object and draw it in the div pertaining to sparkline. -->
-                var sparkline = new google.visualization.ImageSparkLine(providedSparklineImgTD[0]);
-                sparkline.draw(sparklineDataView, {
+                    <#-- Create the vis object and draw it in the div pertaining to sparkline. -->
+                    var sparkline = new google.visualization.ImageSparkLine(providedSparklineImgTD[0]);
+                    sparkline.draw(sparklineDataView, {
                         width: visualizationOptions.width,
                         height: visualizationOptions.height,
                         showAxisLines: false,
                         showValueLabels: false,
-                        labelPosition: 'none'
-                });
-
-
-                } else {
-
-                    <#-- Prepare data for generating google chart URL. -->
-
-                    <#-- If we need to serve data for https:, we have to create an array of values to be plotted. -->
-                    var chartValuesForEncoding = new Array();
-
-                    $.each(sparklineDataView.getViewRows(), function(index, value) {
-                        chartValuesForEncoding.push(data.getValue(value, 1));
+                        labelPosition: 'none',
+                        legend: { position: 'none' },
+                        chartArea: {'width': '100%', 'height': '100%'},
+                        colors: ['3399CC'],
+                        hAxis: {
+                            gridlines: {color: 'transparent'},
+                            baselineColor: 'transparent'
+                        },
+                        vAxis: {
+                            gridlines: {color: 'transparent'},
+                            baselineColor: 'transparent'
+                        },
+                        backgroundColor: {
+                            stroke: '#cfe4ed',
+                            strokeWidth: 2
+                        },
+                        tooltip: { 
+                            textStyle: {fontSize: 14}
+                        }
                     });
-
-                    var chartImageURL = constructVisualizationURLForSparkline(
-                                extendedEncodeDataForChartURL(chartValuesForEncoding,
-                                                              sparklineDataView.getColumnRange(0).max),
-                                visualizationOptions);
-
-                    var imageContainer = $(providedSparklineImgTD[0]);
-
-                    imageContainer.image(chartImageURL,
-                            function(){
-                                imageContainer.empty().append(this);
-                                $(this).addClass("google-visualization-sparkline-image");
-                            },
-                            function(){
-                                // For performing any action on failure to
-                                // find the image.
-                                imageContainer.empty();
-                            }
-                    );
-
-                }
 
                 }
 
@@ -156,17 +130,17 @@
                     var totalGrants = onlyUnknownYearGrants ? unknownYearGrantCounts : renderedShortSparks;
 
                     if (totalGrants === 1) {
-                        var grantDisplay = "${i18n().grant}";
+                        var grantDisplay = "${i18n().grant?js_string}";
                     } else {
-                        var grantDisplay = "${i18n().grants}";
+                        var grantDisplay = "${i18n().grants?js_string}";
                     }
 
                     $('#${sparklineContainerID} td.sparkline_number').text(totalGrants).css("font-weight", "bold").attr("class", "grey").append("<span style='color: #2485AE;'> " + grantDisplay + " <br/></span>");
 
-                    var sparksText = '  ${i18n().within_last_10_years}';
+                    var sparksText = '  ${i18n().within_last_10_years?js_string}';
 
                     if (totalGrants !== totalGrantCount) {
-                        sparksText += ' (' + totalGrantCount + ' ${i18n().total})';
+                        sparksText += ' (' + totalGrantCount + ' ${i18n().total?js_string})';
                     }
 
                  <#else>
@@ -185,9 +159,9 @@
                     var totalGrants = onlyUnknownYearGrants ? unknownYearGrantCounts : renderedSparks;
 
                     if (totalGrants === 1) {
-                        var grantDisplay = "${i18n().grant}";
+                        var grantDisplay = "${i18n().grant?js_string}";
                     } else {
-                        var grantDisplay = "${i18n().grants}";
+                        var grantDisplay = "${i18n().grants?js_string}";
                     }
 
                     $('#${sparklineContainerID} td.sparkline_number').text(totalGrants).css("font-weight", "bold").attr("class", "grey").append("<span style='color: #2485AE;'> " + grantDisplay + " <br/></span>");
@@ -196,7 +170,7 @@
                                         + ' through ${sparklineVO.latestRenderedGrantYear?c}</span>';
 
                     if (totalGrants !== totalGrantCount) {
-                        sparksText += ' (' + totalGrantCount + ' ${i18n().total})';
+                        sparksText += ' (' + totalGrantCount + ' ${i18n().total?js_string})';
                     }
 
                     if (totalGrantCount) {
@@ -267,7 +241,12 @@
                     table.prependTo('#${sparklineContainerID}');
                 }
 
-                drawGrantCountVisualization(sparklineImgTD);
+                google.charts.load('current', {
+                    callback: function() {
+                        drawGrantCountVisualization(sparklineImgTD)
+                    },
+                    packages: ['bar', 'corechart', 'table', 'imagesparkline']
+                });   
             });
         </script>
 

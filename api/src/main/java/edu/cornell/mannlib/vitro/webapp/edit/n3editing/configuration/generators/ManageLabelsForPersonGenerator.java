@@ -1,9 +1,9 @@
 /* $This file is distributed under the terms of the license in LICENSE$ */
 package edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators;
 
-import static edu.cornell.mannlib.vitro.webapp.auth.requestedAction.RequestedAction.SOME_LITERAL;
-import static edu.cornell.mannlib.vitro.webapp.auth.requestedAction.RequestedAction.SOME_PREDICATE;
-import static edu.cornell.mannlib.vitro.webapp.auth.requestedAction.RequestedAction.SOME_URI;
+import static edu.cornell.mannlib.vitro.webapp.auth.objects.AccessObject.SOME_LITERAL;
+import static edu.cornell.mannlib.vitro.webapp.auth.objects.AccessObject.SOME_PREDICATE;
+import static edu.cornell.mannlib.vitro.webapp.auth.objects.AccessObject.SOME_URI;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,9 +27,12 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Literal;
 
+import edu.cornell.mannlib.vitro.webapp.auth.attributes.AccessOperation;
+import edu.cornell.mannlib.vitro.webapp.auth.objects.DataPropertyStatementAccessObject;
+import edu.cornell.mannlib.vitro.webapp.auth.objects.ObjectPropertyStatementAccessObject;
 import edu.cornell.mannlib.vitro.webapp.auth.policy.PolicyHelper;
-import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.propstmt.AddDataPropertyStatement;
-import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.propstmt.AddObjectPropertyStatement;
+import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.AuthorizationRequest;
+import edu.cornell.mannlib.vitro.webapp.auth.requestedAction.SimpleAuthorizationRequest;
 import edu.cornell.mannlib.vitro.webapp.beans.Individual;
 import edu.cornell.mannlib.vitro.webapp.beans.Property;
 import edu.cornell.mannlib.vitro.webapp.beans.VClass;
@@ -41,6 +45,7 @@ import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.FieldVTwo;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.preprocessors.FoafNameToRdfsLabelPreprocessor;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.preprocessors.ManageLabelsForPersonPreprocessor;
 import edu.cornell.mannlib.vitro.webapp.i18n.selection.SelectedLocale;
+import edu.cornell.mannlib.vitro.webapp.rdfservice.filter.LanguageFilteringUtils;
 import edu.cornell.mannlib.vitro.webapp.web.templatemodels.individual.DataPropertyStatementTemplateModel;
 
 /**
@@ -246,12 +251,12 @@ public class ManageLabelsForPersonGenerator extends BaseEditConfigurationGenerat
 
 	private void addFormSpecificData(EditConfigurationVTwo config,
 			VitroRequest vreq) {
-		//Get all language codes/labels in the system, and this list is sorted by language name
-        List<HashMap<String, String>> locales = this.getLocales(vreq);
+	    ArrayList<Literal> existingLabels = this.getExistingLabels(config.getSubjectUri(), vreq);
+		//Get language codes/labels for existing labels, and this list is sorted by language name
+        List<HashMap<String, String>> locales = this.getLocales(vreq, existingLabels);
         //Get code to label hashmap - we use this to get the language name for the language code returned in the rdf literal
         HashMap<String, String> localeCodeToNameMap = this.getFullCodeToLanguageNameMap(locales);
 		//the labels already added by the user
-		ArrayList<Literal> existingLabels = this.getExistingLabels(config.getSubjectUri(), vreq);
 		int numberExistingLabels = existingLabels.size();
 		//existing labels keyed by language name and each of the list of labels is sorted by language name
 		HashMap<String, List<LabelInformation>> existingLabelsByLanguageName = this.getLabelsSortedByLanguageName(existingLabels, localeCodeToNameMap, config, vreq);
@@ -267,6 +272,19 @@ public class ManageLabelsForPersonGenerator extends BaseEditConfigurationGenerat
 		 config.addFormSpecificData("selectLocale",availableLocalesForAdd);
 		 config.addFormSpecificData("displayRemoveLink", (numberExistingLabels > 1));
 
+		// get current selected locale
+		String rangeLang = vreq.getLocale().getLanguage();
+		if (!vreq.getLocale().getCountry().isEmpty()) {
+			rangeLang += "-" + vreq.getLocale().getCountry();
+		}
+
+		// check if locale already has an entry (label)
+		boolean localeEntryExisting = true;
+		for (HashMap<String, String> tmp : availableLocalesForAdd) {
+			if (tmp.get("code").equals(rangeLang)) localeEntryExisting = false;
+		}
+		config.addFormSpecificData("localeEntryExisting", localeEntryExisting);
+		config.addFormSpecificData("currentSelectedLocale", rangeLang);
 
         //How do we edit? Will need to see
         config.addFormSpecificData("deleteWebpageUrl", "/edit/primitiveDelete");
@@ -316,14 +334,14 @@ public class ManageLabelsForPersonGenerator extends BaseEditConfigurationGenerat
 
 	private Object isEditable(VitroRequest vreq, EditConfigurationVTwo config) {
 		Individual individual = EditConfigurationUtils.getIndividual(vreq, config.getSubjectUri());
-		AddDataPropertyStatement adps = new AddDataPropertyStatement(
+		DataPropertyStatementAccessObject dpsAccessObject = new DataPropertyStatementAccessObject(
 				vreq.getJenaOntModel(), individual.getURI(),
 				SOME_URI, SOME_LITERAL);
 
-		AddObjectPropertyStatement aops = new AddObjectPropertyStatement(
+		ObjectPropertyStatementAccessObject aops = new ObjectPropertyStatementAccessObject(
 				vreq.getJenaOntModel(), individual.getURI(),
 				SOME_PREDICATE, SOME_URI);
-    	return PolicyHelper.isAuthorizedForActions(vreq, adps.or(aops));
+    	return PolicyHelper.isAuthorizedForActions(vreq, AuthorizationRequest.or(new SimpleAuthorizationRequest(dpsAccessObject, AccessOperation.ADD), new SimpleAuthorizationRequest(aops, AccessOperation.ADD)));
 	}
 
 
@@ -419,28 +437,27 @@ public class ManageLabelsForPersonGenerator extends BaseEditConfigurationGenerat
 	        + "    ?subject rdfs:label ?label \n"
 	        + "} ORDER BY ?label";
 
-
+	
     private ArrayList<Literal>  getExistingLabels(String subjectUri, VitroRequest vreq) {
         String queryStr = QueryUtils.subUriForQueryVar(LABEL_QUERY, "subject", subjectUri);
         log.debug("queryStr = " + queryStr);
 
         ArrayList<Literal>  labels = new ArrayList<Literal>();
         try {
-        	//We want to get the labels for all the languages, not just the display language
-            ResultSet results = QueryUtils.getLanguageNeutralQueryResults(queryStr, vreq);
+            // No longer retrieving language-neutral results here, so that
+            // language editing is consistent with other editing forms.
+            // Editable values depend on the interface's locale selector.
+            ResultSet results = QueryUtils.getQueryResults(queryStr, vreq);
             while (results.hasNext()) {
                 QuerySolution soln = results.nextSolution();
                 Literal nodeLiteral = soln.get("label").asLiteral();
                 labels.add(nodeLiteral);
-
-
             }
         } catch (Exception e) {
             log.error(e, e);
         }
        return labels;
-}
-
+    }
 
 
     //Putting this into a method allows overriding it in subclasses
@@ -454,29 +471,31 @@ public class ManageLabelsForPersonGenerator extends BaseEditConfigurationGenerat
     	return template;
     }
 
+    //get locales present in list of literals
+    public List<HashMap<String, String>> getLocales(VitroRequest vreq, 
+            List<Literal> existingLiterals) {
+        Set<Locale> locales = new HashSet<Locale>();
+        for(Literal literal : existingLiterals) {
+            String language = literal.getLanguage();
+            if(!StringUtils.isEmpty(language)) {
+                locales.add(LanguageFilteringUtils.languageToLocale(language));
+            }
+        }
+        if (locales.isEmpty()) {
+            return Collections.emptyList();
+        }
+        List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+        Locale currentLocale = SelectedLocale.getCurrentLocale(vreq);
+        for (Locale locale : locales) {
+            try {
+                list.add(buildLocaleMap(locale, currentLocale));
+            } catch (FileNotFoundException e) {
+                log.warn("Can't show locale '" + locale + "': " + e);
+            }
+        }
 
-
-    //get locales
-    public List<HashMap<String, String>> getLocales(VitroRequest vreq) {
-    	List<Locale> selectables = SelectedLocale.getSelectableLocales(vreq);
-		if (selectables.isEmpty()) {
-			return Collections.emptyList();
-		}
-		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-		Locale currentLocale = SelectedLocale.getCurrentLocale(vreq);
-		for (Locale locale : selectables) {
-			try {
-				list.add(buildLocaleMap(locale, currentLocale));
-			} catch (FileNotFoundException e) {
-				log.warn("Can't show the Locale selector for '" + locale
-						+ "': " + e);
-			}
-		}
-
-		return list;
+        return list;
     }
-
-
 
     public HashMap<String, String> getFullCodeToLanguageNameMap(List<HashMap<String, String>> localesList) {
     	HashMap<String, String> codeToLanguageMap = new HashMap<String, String>();
@@ -512,7 +531,7 @@ public class ManageLabelsForPersonGenerator extends BaseEditConfigurationGenerat
 			Locale currentLocale) throws FileNotFoundException {
 		HashMap<String, String> map = new HashMap<String, String>();
 		//Replacing the underscore with a hyphen because that is what is represented in the actual literals
-		map.put("code", locale.toString().replace("_", "-"));
+		map.put("code", locale.toLanguageTag().replace("_", "-"));
 		map.put("label", locale.getDisplayName(currentLocale));
 		return map;
 	}

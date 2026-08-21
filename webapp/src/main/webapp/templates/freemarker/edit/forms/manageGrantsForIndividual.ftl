@@ -48,16 +48,16 @@ var customFormData = {
     processingUrl: '${urls.base}/edit/primitiveRdfEdit'
 };
 var i18nStrings = {
-    itemSuccessfullyExcluded: '${i18n().grant_successfully_excluded}',
-    errorExcludingItem: '${i18n().error_excluding_grant}'
+    itemSuccessfullyExcluded: '${i18n().grant_successfully_excluded?js_string}',
+    errorExcludingItem: '${i18n().error_excluding_grant?js_string}'
 };
 </script>
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+                  '<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/utils.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>',
                 '<script type="text/javascript" src="${urls.base}/templates/freemarker/edit/forms/js/manageHideShowStatus.js"></script>')}
 

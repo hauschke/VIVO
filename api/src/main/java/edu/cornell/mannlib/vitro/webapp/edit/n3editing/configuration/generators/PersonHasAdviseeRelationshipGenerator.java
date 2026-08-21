@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.XSD;
 
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
@@ -20,6 +21,7 @@ import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.ChildVClasses
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.FieldVTwo;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.IndividualsViaVClassOptions;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.validators.AntiXssValidation;
+import edu.cornell.mannlib.vitro.webapp.i18n.I18n;
 
 public class PersonHasAdviseeRelationshipGenerator extends VivoBaseGenerator implements
         EditConfigurationGenerator {
@@ -112,20 +114,20 @@ public class PersonHasAdviseeRelationshipGenerator extends VivoBaseGenerator imp
 
         conf.addField( new FieldVTwo().
                 setName("advisingRelLabel").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
         conf.addField( new FieldVTwo().
                 setName("firstName").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
         conf.addField( new FieldVTwo().
                 setName("lastName").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
         conf.addField( new FieldVTwo(). // options set by auto complete JS
@@ -134,8 +136,8 @@ public class PersonHasAdviseeRelationshipGenerator extends VivoBaseGenerator imp
 
         conf.addField( new FieldVTwo().
                 setName("subjAreaLabel").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
         conf.addField( new FieldVTwo().
@@ -150,8 +152,8 @@ public class PersonHasAdviseeRelationshipGenerator extends VivoBaseGenerator imp
 
         conf.addField( new FieldVTwo().
                 setName("advisorLabel").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
         conf.addField( new FieldVTwo().
@@ -184,7 +186,7 @@ public class PersonHasAdviseeRelationshipGenerator extends VivoBaseGenerator imp
 
         conf.addValidator(new DateTimeIntervalValidationVTwo("startField","endField"));
         conf.addValidator(new AntiXssValidation());
-        conf.addValidator(new FirstAndLastNameValidator("existingAdvisor"));
+        conf.addValidator(new FirstAndLastNameValidator("existingAdvisor", I18n.bundle(vreq)));
         addFormSpecificData(conf, vreq);
 
         prepare(vreq, conf);

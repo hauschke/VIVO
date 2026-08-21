@@ -134,7 +134,7 @@ Set this flag on the input acUriReceiver where you would like this behavior to o
     <select name="trainingType" style="margin-top:-2px" >
         <option value="" <#if trainingTypeValue == "">selected</#if>>${i18n().select_one}</option>
         <#list trainingTypeOpts?keys as key>
-            <option value="${key}"  <#if trainingTypeValue == key>selected</#if>><#if trainingTypeOpts[key] == "Other">${i18n().academic_studies_or_other}<#else>${trainingTypeOpts[key]}</#if></option>
+            <option value="${key}"  <#if trainingTypeValue == key>selected</#if>>${trainingTypeOpts[key]}</option>
         </#list>
     </select>
     <p>
@@ -203,9 +203,9 @@ var customFormData  = {
     subjectName: '${editConfiguration.subjectName}'
 };
 var i18nStrings = {
-    selectAnExisting: '${i18n().select_an_existing}',
-    orCreateNewOne: '${i18n().or_create_new_one}',
-    selectedString: '${i18n().selected}'
+    selectAnExisting: '${i18n().select_an_existing?js_string}',
+    selectAnExistingOrCreateNewOne: '${i18n().select_an_existing_or_create_a_new_one?js_string}',
+    selectedString: '${i18n().selected?js_string}'
 };
 
 $(document).ready(function() {
@@ -215,12 +215,12 @@ $(document).ready(function() {
 
 </section>
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customFormWithAutocomplete.css" />')}
 
 
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/extensions/String.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>',

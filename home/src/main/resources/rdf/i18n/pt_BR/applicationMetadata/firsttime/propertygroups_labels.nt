@@ -1,0 +1,16 @@
+<http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> <http://www.w3.org/2000/01/rdf-schema#label> "Identidade"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupbibliographiconline> <http://www.w3.org/2000/01/rdf-schema#label> "Documentos relacionados"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupbiography> <http://www.w3.org/2000/01/rdf-schema#label> "Fundo"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupoutreach> <http://www.w3.org/2000/01/rdf-schema#label> "Serviço"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> <http://www.w3.org/2000/01/rdf-schema#label> "Informação adicional documento"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGrouplinks> <http://www.w3.org/2000/01/rdf-schema#label> "Ligações"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGrouplocation> <http://www.w3.org/2000/01/rdf-schema#label> "Location"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupbibmapping> <http://www.w3.org/2000/01/rdf-schema#label> "Mapeamento bib"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupoverview> <http://www.w3.org/2000/01/rdf-schema#label> "Visão geral"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupteaching> <http://www.w3.org/2000/01/rdf-schema#label> "Ensino"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupaffiliation> <http://www.w3.org/2000/01/rdf-schema#label> "Filiação"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGrouptime> <http://www.w3.org/2000/01/rdf-schema#label> "Tempo"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupbibliographic> <http://www.w3.org/2000/01/rdf-schema#label> "Publicações"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupresearch> <http://www.w3.org/2000/01/rdf-schema#label> "Pesquisas"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupaddress> <http://www.w3.org/2000/01/rdf-schema#label> "Contato"@pt-BR .
+<http://vivoweb.org/ontology#vitroPropertyGroupmapping> <http://www.w3.org/2000/01/rdf-schema#label> "Mapeamento"@pt-BR .

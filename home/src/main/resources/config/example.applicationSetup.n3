@@ -26,9 +26,21 @@
     :hasSearchIndexer             :basicSearchIndexer ;
     :hasImageProcessor            :iioImageProcessor ;
     :hasFileStorage               :ptiFileStorage ;
+#    :hasAuditModule               :tdbAuditModule ;
     :hasContentTripleSource       :tdbContentTripleSource ;
     :hasConfigurationTripleSource :tdbConfigurationTripleSource ;
     :hasTBoxReasonerModule        :jfactTBoxReasonerModule .
+
+# ----------------------------
+#
+# Audit module: 
+#
+
+#:tdbAuditModule
+#    a   <java:edu.cornell.mannlib.vitro.webapp.audit.TDBAuditModule> ,
+#        <java:edu.cornell.mannlib.vitro.webapp.audit.AuditModule> ;
+#    :hasTdbDirectory "tdbAuditModels" .
+
 
 # ----------------------------
 #
@@ -53,7 +65,7 @@
 # ----------------------------
 #
 # Search engine module:
-#    The Solr-based implementation is the only standard option, but it can be
+#    The Solr-based implementation is the standard option and it can be
 #    wrapped in an "instrumented" wrapper, which provides additional logging
 #    and more rigorous life-cycle checking.
 #
@@ -66,6 +78,17 @@
 :solrSearchEngine
     a   vitroWebapp:searchengine.solr.SolrSearchEngine ,
         vitroWebapp:modules.searchEngine.SearchEngine .
+
+# Alternatively, you can setup Elasticsearch engine in the same manner:
+
+#:instrumentedSearchEngineWrapper
+#    a   vitroWebapp:searchengine.InstrumentedSearchEngineWrapper ,
+#        vitroWebapp:modules.searchEngine.SearchEngine ;
+#    :wraps :elasticSearchEngine .
+
+#:elasticSearchEngine
+#    a   vitroWebapp:searchengine.elasticsearch.ElasticSearchEngine ,
+#        vitroWebapp:modules.searchEngine.SearchEngine .
 
 # ----------------------------
 #
@@ -82,10 +105,10 @@
 # ----------------------------
 #
 # Content triples source module: holds data contents
-#    The SDB-based implementation is the default option. It reads its parameters
+#    The TDB-based implementation is the default option. It reads its parameters
 #    from the runtime.properties file, for backward compatibility.
 #
-#    Other implementations are based on a local TDB instance, a "standard" SPARQL
+#    Other implementations are based on an SDB instance, a "standard" SPARQL
 #    endpoint, or a Virtuoso endpoint, with parameters as shown.
 #
 

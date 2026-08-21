@@ -3,14 +3,14 @@
 <#import "lib-list.ftl" as l>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${country}">
     <head>
         <#include "head.ftl">
     </head>
 
     <body class="${bodyClasses!}" onload="${bodyOnload!}">
         <#include "identity.ftl">
-        <#include "search.ftl" >
+        <#include "search.ftl">
         <#include "menu.ftl">
 
 		<#-- VIVO OpenSocial Extension by UCSF -->

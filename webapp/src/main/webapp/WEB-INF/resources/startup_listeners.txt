@@ -5,6 +5,10 @@
 #     https://sourceforge.net/apps/mediawiki/vivo/index.php?title=The_StartupManager
 #
 
+# This listener must be run before any other code that uses resource bundles, 
+# otherwise there will be problems with i18n-support.
+org.vivoweb.webapp.startup.i18nSetup
+
 edu.cornell.mannlib.vitro.webapp.servlet.setup.JvmSmokeTests
 
 edu.cornell.mannlib.vitro.webapp.application.ApplicationSetup
@@ -21,8 +25,13 @@ edu.cornell.mannlib.vitro.webapp.config.RevisionInfoSetup
 
 edu.cornell.mannlib.vitro.webapp.email.FreemarkerEmailFactory$Setup
 
+# For multiple language support
+edu.cornell.mannlib.vitro.webapp.i18n.selection.LocaleSelectionSetup
+
 edu.cornell.mannlib.vitro.webapp.servlet.setup.ConfigurationModelsSetup
 edu.cornell.mannlib.vitro.webapp.servlet.setup.ContentModelSetup
+
+edu.cornell.mannlib.vitro.webapp.i18n.I18nContextListener
 
 edu.cornell.mannlib.vitro.webapp.web.images.PlaceholderUtil$Setup
 
@@ -39,19 +48,14 @@ edu.cornell.mannlib.vitro.webapp.servlet.setup.SimpleReasonerSetup
 # Must run after JenaDataSourceSetup
 edu.cornell.mannlib.vitro.webapp.servlet.setup.ThemeInfoSetup
 
-edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionRegistry$Setup
 
 edu.cornell.mannlib.vitro.webapp.auth.permissions.PermissionSetsSmokeTest
 
-edu.cornell.mannlib.vitro.webapp.auth.policy.bean.PropertyRestrictionBean$Setup
-
 edu.cornell.mannlib.vitro.webapp.auth.policy.setup.CommonPolicyFamilySetup
 
-edu.cornell.mannlib.vitro.webapp.auth.policy.RootUserPolicy$Setup
+edu.cornell.mannlib.vitro.webapp.migration.auth.AuthMigrator
 
-edu.cornell.mannlib.vivo.auth.policy.SelfEditorRelationshipPolicy$Setup
-
-edu.cornell.mannlib.vitro.webapp.auth.policy.RestrictHomeMenuItemEditingPolicy$Setup
+edu.cornell.mannlib.vitro.webapp.auth.RootUserSetup
 
 edu.cornell.mannlib.vitro.webapp.services.shortview.ShortViewServiceSetup
 
@@ -66,9 +70,6 @@ org.vivoweb.webapp.startup.TemplateModelSetup
 org.vivoweb.webapp.startup.SearchResultTemplateModelSetup
 
 edu.ucsf.vitro.opensocial.OpenSocialSmokeTests
-
-# For multiple language support
-edu.cornell.mannlib.vitro.webapp.i18n.selection.LocaleSelectionSetup
 
 # The search indexer uses a "public" permission, so the PropertyRestrictionPolicyHelper
 #   and the PermissionRegistry must already be set up.
@@ -92,4 +93,5 @@ edu.cornell.mannlib.vitro.webapp.controller.individual.VIVOIndividualResponseBui
 # This should be near the end, because it will issue a warning if the connection to the SearchEngine times out.
 edu.cornell.mannlib.vitro.webapp.servlet.setup.SearchEngineSmokeTest
 
-org.vivoweb.webapp.startup.i18nSetup
+edu.cornell.mannlib.vitro.webapp.audit.AuditSetup
+

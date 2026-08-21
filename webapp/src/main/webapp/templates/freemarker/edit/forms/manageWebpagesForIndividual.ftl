@@ -70,18 +70,18 @@ var customFormData = {
     reorderUrl: '${urls.base}/edit/reorder'
 };
 var i18nStrings = {
-    dragDropToReorderWebpages: '${i18n().drag_drop_to_reorder_webpages}',
-    webpageReorderingFailed: '${i18n().webpage_reordering_failed}',
-    confirmWebpageDeletion: '${i18n().confirm_webpage_deletion}',
-    errorRemovingWebpage: '${i18n().error_removing_webpage}'
+    dragDropToReorderWebpages: '${i18n().drag_drop_to_reorder_webpages?js_string}',
+    webpageReorderingFailed: '${i18n().webpage_reordering_failed?js_string}',
+    confirmWebpageDeletion: '${i18n().confirm_webpage_deletion?js_string}',
+    errorRemovingWebpage: '${i18n().error_removing_webpage?js_string}'
 };
 </script>
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />',
                   '<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/manageDragDropList.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+                  '<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/utils.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>',
               '<script type="text/javascript" src="${urls.base}/templates/freemarker/edit/forms/js/manageWebpagesForIndividual.js"></script>')}

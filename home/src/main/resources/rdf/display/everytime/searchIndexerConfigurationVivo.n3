@@ -23,7 +23,16 @@
         searchIndex:documentBuilding.DocumentModifier ,
         searchIndex:extensions.LabelsAcrossContextNodes ;
     rdfs:label "Labels across relatedBy/relates" ;
-    :hasTypeRestriction "http://vivoweb.org/ontology/core#Relationship" ;
+    :appliesToContextNodeType "http://vivoweb.org/ontology/core#Relationship" ;
+    :hasIncomingProperty "http://vivoweb.org/ontology/core#relatedBy" ;
+    :hasOutgoingProperty "http://vivoweb.org/ontology/core#relates" .
+
+# Special case for VCards being linked to Authorships (no label present)
+:extension_forContextNodeVCards
+    a   searchIndex:indexing.IndexingUriFinder ,
+        searchIndex:documentBuilding.DocumentModifier ,
+        searchIndex:extensions.VCardsAcrossContextNodes ;
+    rdfs:label "VCards across relatedBy/relates" ;
     :hasIncomingProperty "http://vivoweb.org/ontology/core#relatedBy" ;
     :hasOutgoingProperty "http://vivoweb.org/ontology/core#relates" .
 
@@ -114,6 +123,22 @@
             ?uri obo:ARG_2000028 ?card .
             ?card a vcard:Individual .
             ?card vcard:hasEmail ?subject .
+        }
+        """ .
+
+# URI finder that will find the relevant person to update when the 
+# property linking to the email or preferred title resource is removed
+:vivoUriFinder_VCard_2
+    a   searchIndex:indexing.IndexingUriFinder ,
+        searchIndex:indexing.SelectQueryUriFinder ;
+    rdfs:label "Preferred title / email person URI finder #2" ;
+    :hasPredicateRestriction "http://www.w3.org/2006/vcard/ns#hasTitle" ;
+    :hasPredicateRestriction "http://www.w3.org/2006/vcard/ns#hasEmail" ;
+    :hasSelectQuery """
+        PREFIX obo: <http://purl.obolibrary.org/obo/>
+        SELECT ?uri
+        WHERE {
+            ?uri obo:ARG_2000028 ?subject .
         }
         """ .
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.jena.vocabulary.RDF;
 import org.apache.jena.vocabulary.XSD;
 
 import edu.cornell.mannlib.vitro.webapp.controller.VitroRequest;
@@ -19,6 +20,7 @@ import edu.cornell.mannlib.vitro.webapp.edit.n3editing.VTwo.fields.FieldVTwo;
 import edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.validators.AntiXssValidation;
 import edu.cornell.mannlib.vitro.webapp.utils.FrontEndEditingUtils.EditMode;
 import edu.cornell.mannlib.vitro.webapp.utils.generators.EditModeUtils;
+import edu.cornell.mannlib.vitro.webapp.i18n.I18n;
 
 public class GrantHasContributorGenerator  extends VivoBaseGenerator implements EditConfigurationGenerator{
 
@@ -64,8 +66,8 @@ public class GrantHasContributorGenerator  extends VivoBaseGenerator implements 
 
         conf.addField( new FieldVTwo().
                 setName("personLabel").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString())));
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI())));
 
         conf.addField( new FieldVTwo().
                 setName("personLabelDisplay").
@@ -73,14 +75,14 @@ public class GrantHasContributorGenerator  extends VivoBaseGenerator implements 
 
         conf.addField( new FieldVTwo().
                 setName("firstName").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
         conf.addField( new FieldVTwo().
                 setName("lastName").
-                setRangeDatatypeUri(XSD.xstring.toString() ).
-                setValidators( list("datatype:" + XSD.xstring.toString()) )
+                setRangeDatatypeUri(RDF.dtLangString.getURI() ).
+                setValidators( list("datatype:" + RDF.dtLangString.getURI()) )
                 );
 
 		conf.addField( new FieldVTwo().
@@ -92,7 +94,7 @@ public class GrantHasContributorGenerator  extends VivoBaseGenerator implements 
 
         //Add validator
         conf.addValidator(new AntiXssValidation());
-        conf.addValidator(new FirstAndLastNameValidator("existingPerson"));
+        conf.addValidator(new FirstAndLastNameValidator("existingPerson", I18n.bundle(vreq)));
 
         //Adding additional data, specifically edit mode
         addFormSpecificData(conf, vreq);

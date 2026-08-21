@@ -26,83 +26,63 @@
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 <http://purl.org/ontology/bibo/>
-      rdfs:label "Bibliographic Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "bibo" .
 
 <http://www.w3.org/2004/02/skos/core>
-      rdfs:label "SKOS (Simple Knowledge Organization System)"@en-US ;
       vitro:ontologyPrefixAnnot "skos" .
 
 <http://vivoweb.org/ontology/core>
-      rdfs:label "VIVO Core Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "vivo" .
 
 <http://purl.org/net/OCRe/research.owl>
-      rdfs:label "OCRe Research"@en-US ;
       vitro:ontologyPrefixAnnot "ocrer" .
 
 <http://purl.org/net/OCRe/study_design.owl>
-      rdfs:label "OCRe Study Design"@en-US ;
       vitro:ontologyPrefixAnnot "ocresd" .
 
 <http://purl.org/net/OCRe/study_protocol.owl>
-      rdfs:label "OCRe Study Protocol"@en-US ;
       vitro:ontologyPrefixAnnot "ocresp" .
 
 <http://purl.org/net/OCRe/statistics.owl>
-      rdfs:label "OCRe Statistics"@en-US ;
       vitro:ontologyPrefixAnnot "ocresst" .
 
 <http://aims.fao.org/aos/geopolitical.owl>
-      rdfs:label "Geopolitical Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "geo" .
 
 <http://purl.org/NET/c4dm/event.owl>
-      rdfs:label "Event Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "event" .
 
 <http://purl.obolibrary.org/obo/>
-      rdfs:label "OBO Foundry"@en-US ;
       vitro:ontologyPrefixAnnot "obo" .
 
 <http://www.w3.org/2006/vcard/ns>
-      rdfs:label "VCard"@en-US ;
       vitro:ontologyPrefixAnnot "vcard" .
 
 <http://xmlns.com/foaf/0.1/>
-      rdfs:label "FOAF (Friend of a Friend)"@en-US ;
       vitro:ontologyPrefixAnnot "foaf" .
 
 <http://vivoweb.org/ontology/scientific-research>
-      rdfs:label "VIVO Scientific Research Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "scires" .
 
 <http://purl.org/spar/fabio/>
-      rdfs:label "FaBiO (FRBR-Aligned Bibliographic Ontology)"@en-US ;
       vitro:ontologyPrefixAnnot "fabio" .
 
 <http://purl.org/spar/c4o/>
-      rdfs:label "Citation Counting and Context Characterization Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "c4o" .
 
 <http://purl.org/spar/cito/>
-      rdfs:label "CiTO (Citation Typing Ontology)"@en-US ;
       vitro:ontologyPrefixAnnot "cito" .
 
 <http://purl.org/dc/terms/>
-      rdfs:label "Dublin Core Terms"@en-US ;
       vitro:ontologyPrefixAnnot "dcterms" .
 
 <http://purl.org/vocab/vann/>
-      rdfs:label "Vocabulary for Annotating Vocabulary Descriptions"@en-US ;
       vitro:ontologyPrefixAnnot "vann" .
 
 <http://purl.obolibrary.org/obo/ro.owl>
-      rdfs:label "Relations Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "ro" .
 
 <http://www.ebi.ac.uk/efo/swo/>
-      rdfs:label "Software Ontology"@en-US ;
       vitro:ontologyPrefixAnnot "swo" .
 
 vivo:pmcid
@@ -178,7 +158,7 @@ vivo:isCorrespondingAuthor
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:publicDescriptionAnnot
-              "Indicates whether the author handles correspondence about the work and is in effect the guarantor of the published work.  The response is either 'true' or 'false' (without the quotes)."^^xsd:string .
+              "Indicates whether the author handles correspondence about the work and is in effect the guarantor of the published work.  The response is either 'true' or 'false' (without the quotes)."@en-US .
 
 vivo:SeminarSeries
       vitro:displayLimitAnnot
@@ -213,9 +193,7 @@ vivo:supplementalInformation
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Allows for the entry of additional information, such as additional information describing educational background."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:chapter
       vitro:displayRankAnnot
@@ -227,9 +205,7 @@ bibo:chapter
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A chapter number. NOT to be used for the chapter title, which should be entered in the \"name\" field instead (the field in bold at the top of the page)"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:Student
       vitro:displayLimitAnnot
@@ -341,9 +317,7 @@ bibo:sici
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The Serial Item and Contribution Identifier (SICI) is a code (ANSI/NISO standard Z39.56) used to uniquely identify specific volumes, articles or other identifiable parts of a periodical."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:placeOfPublication
       vitro:displayLimitAnnot
@@ -357,9 +331,7 @@ vivo:placeOfPublication
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "City in which the publication was done."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:hasCollaborator
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -389,8 +361,6 @@ skos:narrower
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "52"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "narrower term"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -399,8 +369,6 @@ skos:narrower
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a term that is narrower in meaning (i.e. more specific) to another term that is broader in meaning, where the scope (meaning) of narrower term falls completely within the scope of the broader term."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean ;
       vitro:inPropertyGroupAnnot
@@ -468,9 +436,7 @@ bibo:pageStart
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Starting page number within a continuous page range."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:countryAreaYear
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -492,9 +458,7 @@ vivo:reportId
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Unique identifier for a Report (a type of information resource)."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:hasMinLongitude
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -527,8 +491,6 @@ owl:sameAs
               "1"^^xsd:int ;
       vitro:forceStubDeletionAnnot
               "false"^^xsd:boolean ;
-      vitro:fullPropertyNameAnnot
-              "sameAs" ;
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:offerCreateNewOptionAnnot
@@ -539,8 +501,6 @@ owl:sameAs
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This is the OWL property to link two indivdiuals with the same 'identity'. see http://www.w3.org/TR/owl-ref/#sameAs-def"@en-US ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean ;
       vitro:stubObjectPropertyAnnot
@@ -787,8 +747,6 @@ obo:ERO_0000005
       vitro:inClassGroup <http://vivoweb.org/ontology#vitroClassGroupactivities> .
 
 vitro:moniker
-      vitro:descriptionAnnot
-              "This property is deprecated."^^xsd:string ;
       vitro:displayLimitAnnot
               "3"^^xsd:int ;
       vitro:displayRankAnnot
@@ -935,9 +893,7 @@ bibo:pmid
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A PMID (PubMed Identifier or PubMed Unique Identifier) is a unique number assigned to each PubMed citation of life sciences and biomedical scientific journal articles."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:Film
       vitro:displayLimitAnnot
@@ -1001,9 +957,7 @@ vivo:grantDirectCosts
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This is the cost associated with the grant activity, and should not include any indirect cost associated with administering the grant."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:nameListES
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -1042,8 +996,6 @@ vivo:features
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "60"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "features"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1054,8 +1006,6 @@ vivo:features
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates an information resource to a person it features."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1066,8 +1016,6 @@ vivo:featuredIn
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "50"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "featuredIn"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1078,8 +1026,6 @@ vivo:featuredIn
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a person to an information resource that contains a featured article on that person."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1145,8 +1091,6 @@ bibo:distributor
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "70"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "distributor"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1157,8 +1101,6 @@ bibo:distributor
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The foaf definition is as follows - Distributor of a document or a collection of documents. However, in VIVO, this can relate anything as the distributor to anything else."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1177,8 +1119,6 @@ vivo:eligibleFor
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Used for the situation where a credential has a prerequisite training or degree, as in becoming board eligible in a field of medicine"^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1194,8 +1134,6 @@ obo:ERO_0001254
       vitro:inClassGroup <http://vivoweb.org/ontology#vitroClassGroupactivities> .
 
 bibo:affirmedBy
-      vitro:fullPropertyNameAnnot
-              "affirmedBy"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1206,8 +1144,6 @@ bibo:affirmedBy
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "A legal decision that affirms a ruling."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1299,8 +1235,6 @@ vivo:assignee
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "the individual or entity to whom ownership of the published application was assigned at the time of publication."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1322,8 +1256,6 @@ obo:ERO_0001257
 bibo:presents
       vitro:displayRankAnnot
               "200"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "presentations"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1334,8 +1266,6 @@ bibo:presents
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates an event to associated documents; for example, conference to a paper."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1407,9 +1337,7 @@ bibo:locator
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibmapping> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "A description (often numeric) that locates an item within a containing document or collection."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 bibo:Article
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -1455,8 +1383,6 @@ geo:GDPYear
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:degree
-      vitro:fullPropertyNameAnnot
-              "degree"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1467,8 +1393,6 @@ bibo:degree
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "The thesis degree."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1497,9 +1421,7 @@ vivo:localAwardId
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#selfEditor> ;
-      vitro:publicDescriptionAnnot
-              "An institution's local identifier assigned to a grant awarded."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#selfEditor> .
 
 obo:ARG_0000197
       vitro:inPropertyGroupAnnot
@@ -1529,15 +1451,11 @@ vivo:iclCode
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              """The International classification(s) to which the published application has been assigned."""^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:presentedAt
       vitro:displayRankAnnot
               "120"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "presentedAt"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1548,8 +1466,6 @@ bibo:presentedAt
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates a document to an event; for example, a paper to a conference."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1566,8 +1482,6 @@ vivo:publisherOf
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "25"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "publisher of"^^xsd:string ;
 	  vitro:customEntryFormAnnot
 		      "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.AutocompleteObjectPropertyFormGenerator"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -1580,8 +1494,6 @@ vivo:publisherOf
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates an entity that is engaged in publishing printed or online material to the material itself."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1712,9 +1624,7 @@ bibo:asin
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "The Amazon Standard Identification Number (ASIN) is a unique identification number assigned by Amazon.com and its partners for product identification within the Amazon.com organization."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 vivo:outreachOverview
       vitro:displayLimitAnnot
@@ -1729,8 +1639,6 @@ vivo:outreachOverview
               <http://vivoweb.org/ontology#vitroPropertyGroupoutreach> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Please enter a single summary narrative of your outreach goals and/or contributions"^^xsd:string ;
       vitro:editing
               "HTML"^^xsd:string .
 
@@ -1827,8 +1735,6 @@ bibo:doi
               "1"^^xsd:int ;
       vitro:displayRankAnnot
               "3"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "doi"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -1839,8 +1745,6 @@ bibo:doi
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The Digital Object Identifier (DOI) System provides for persistent identification of content objects in the digital environment. \"DOI names are assigned to any entity for use on digital networks. They are used to provide current information, including where they (or information about them) can be found on the Internet. Information about a digital object may change over time, including where to find it, but its DOI name will not change.\""^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -1870,9 +1774,7 @@ bibo:shortDescription
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An account of the resource."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:isAdministeredBy
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -1896,9 +1798,7 @@ bibo:volume
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A volume number."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:abstract
       vitro:displayLimitAnnot
@@ -1913,8 +1813,6 @@ bibo:abstract
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A summary of the resource."^^xsd:string ;
       vitro:editing
               "HTML"^^xsd:string .
 
@@ -2029,8 +1927,6 @@ vivo:courseCredits
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Number of credits assigned a course by an learning institution."^^xsd:string ;
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
 
@@ -2073,9 +1969,7 @@ bibo:number
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A generic item or document number. Not to be confused with issue number. A barcode, perhaps?"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 obo:RO_0001025
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -2144,8 +2038,6 @@ vivo:teachingOverview
               <http://vivoweb.org/ontology#vitroPropertyGroupteaching> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Please enter a single narrative summary description of your teaching activities, goals, and/or experience"^^xsd:string ;
       vitro:editing
               "HTML"^^xsd:string .
 
@@ -2155,9 +2047,7 @@ vivo:rank
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "enter the position in the list that you would like this item displayed"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:issn
       vitro:displayLimitAnnot
@@ -2171,9 +2061,7 @@ bibo:issn
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An International Standard Serial Number (ISSN) is a unique eight-digit number used to identify a periodical publication."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:supports
       vitro:displayLimitAnnot
@@ -2207,9 +2095,7 @@ vivo:patentNumber
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Unique number assigned to a patent application when the United States Patent and Trademark Office issues as a patent."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:Journal
       vitro:displayLimitAnnot
@@ -2248,9 +2134,7 @@ vivo:contactInformation
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupaddress> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The contact information for a particular event. This could be a name, email, phone number, or method(s) of contacting someone to gain information about the event."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:nameListEN
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -2273,8 +2157,6 @@ vivo:overview
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A short narrative summary to be used as a single descriptive overview statement."^^xsd:string ;
       vitro:editing
               "HTML"^^xsd:string .
 
@@ -2290,9 +2172,7 @@ vivo:description
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An account of the resource."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:hasCode
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -2343,8 +2223,6 @@ vivo:grantSubcontractedThrough
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "15"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "grantSubcontractedThrough"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -2353,8 +2231,6 @@ vivo:grantSubcontractedThrough
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a grant to the organization awarding the sub-contract for the grant."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean ;
       vitro:offerCreateNewOptionAnnot
@@ -2364,8 +2240,6 @@ obo:ERO_0001260
       vitro:inClassGroup <http://vivoweb.org/ontology#vitroClassGroupactivities> .
 
 bibo:recipient
-      vitro:fullPropertyNameAnnot
-              "recipient"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -2376,8 +2250,6 @@ bibo:recipient
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a communication document to the agent who receives that communication document."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -2466,9 +2338,7 @@ vivo:freetextKeyword
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:inPropertyGroupAnnot
-              <http://vivoweb.org/ontology#vitroPropertyGroupresearch> ;
-      vitro:publicDescriptionAnnot
-              "Intended for a word or short phrase only where no instance of a controlled vocabulary can be identified. Can also be used to help in highlighting subtle difference in work."^^xsd:string .
+              <http://vivoweb.org/ontology#vitroPropertyGroupresearch> .
 
 vivo:Credential
       vitro:displayLimitAnnot
@@ -2495,9 +2365,7 @@ bibo:identifier
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "Unique identifier of a document or collection. This data property is not seen or updated by anyone."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 obo:ERO_0000044
       vitro:displayLimitAnnot
@@ -2535,8 +2403,6 @@ bibo:reviewOf
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "60"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "reviewOf"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -2547,8 +2413,6 @@ bibo:reviewOf
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates a review document to a reviewed thing (resource, item, etc.)."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -2708,16 +2572,12 @@ vivo:reviewedIn
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "60"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "reviewedIn"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates something to the review of that thing."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -2867,8 +2727,6 @@ vivo:proceedingsOf
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "30"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "proceedingsOf"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -2879,8 +2737,6 @@ vivo:proceedingsOf
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates the proceedings to the conference that produced the proceedings."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -2979,8 +2835,6 @@ geo:self_governing
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:hasPrerequisite
-      vitro:fullPropertyNameAnnot
-              "hasPrerequisite"^^xsd:string ;
       vitro:displayLimitAnnot
               "5"^^xsd:int ;
       vitro:displayRankAnnot
@@ -3210,9 +3064,7 @@ bibo:pageEnd
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Ending page number within a continuous page range."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:AudioDocument
       vitro:displayLimitAnnot
@@ -3307,8 +3159,6 @@ obo:ERO_0000029
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A 'global citation frequency' is an entity referencing a distinct source, date, and value; include the value, source, and date in the label for clarity."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -3394,8 +3244,6 @@ bibo:translationOf
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "52"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "translation of"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -3406,8 +3254,6 @@ bibo:translationOf
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates a translated document to the original document."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -3438,8 +3284,6 @@ geo:hasBorderWith
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
 
 bibo:performer
-      vitro:fullPropertyNameAnnot
-              "performer"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -3450,8 +3294,6 @@ bibo:performer
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a performance to the person who or organization that carries out the performance."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -3526,8 +3368,6 @@ vivo:supportedInformationResource
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "enter a publication or document supported by this grant"^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -3572,9 +3412,7 @@ bibo:eissn
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An International Standard Serial Number (ISSN) is a unique eight-digit number used to identify a periodical publication. The eissn is an issn for electronic periodicals."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:nameOfficialEN
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -3620,8 +3458,6 @@ vivo:publisher
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "18"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "publisher"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -3632,8 +3468,6 @@ vivo:publisher
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates published materials to an entity that is engaged in publishing."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -3698,9 +3532,7 @@ vivo:seatingCapacity
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Number of people who can be seated in a specific room, by physical space available or limitations set by law. "^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:ConferencePoster
       vitro:displayLimitAnnot
@@ -3727,9 +3559,7 @@ vivo:middleName
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupaddress> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> ;
-      vitro:publicDescriptionAnnot
-              "The middle name or initial with which you normally identify yourself.  Only one may be entered."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#editor> .
 
 vivo:WorkshopSeries
       vitro:displayLimitAnnot
@@ -3883,9 +3713,7 @@ vivo:licenseNumber
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "license number"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:FacultyPosition
       vitro:displayLimitAnnot
@@ -3933,9 +3761,7 @@ bibo:gtin14
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Global Trade Item Number (GTIN) is an identifier for trade items developed by GS1 (comprising the former EAN International and Uniform Code Council). GTIN is an \"umbrella\" term used to describe the entire family of GS1 data structures for trade items (products and services) identification. GTINs may be 8, 12, 13 or 14 digits long."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:AdvisingRelationship
       vitro:displayLimitAnnot
@@ -4020,9 +3846,7 @@ bibo:section
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A section number"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:CaseStudy
       vitro:displayLimitAnnot
@@ -4062,8 +3886,6 @@ geo:nationalityES
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:interviewer
-      vitro:fullPropertyNameAnnot
-              "interviewer"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4074,8 +3896,6 @@ bibo:interviewer
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An agent that interview another agent."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4209,23 +4029,17 @@ vivo:orcidId
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "ORCID (Open Researcher and Contributor ID) is a proposed nonproprietary alphanumeric code that would uniquely identify scientific and other academic authors."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:hasFacility
       vitro:displayLimitAnnot
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "90"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "has facility"^^xsd:string ;
       vitro:offerCreateNewOptionAnnot
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates an organization to a facility that it owns or runs."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4249,9 +4063,7 @@ geo:nameListFR
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "ClinicalTrials.gov registry number"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:organization
       vitro:displayLimitAnnot
@@ -4280,8 +4092,6 @@ bibo:Slideshow
 vivo:equipmentFor
       vitro:displayLimitAnnot
               "5"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "equipment for"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4292,8 +4102,6 @@ vivo:equipmentFor
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates equipment to the organization that owns the equipment."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4336,9 +4144,7 @@ bibo:prefixName
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupaddress> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A title placed before a person's name."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:nameShortAR
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -4387,9 +4193,7 @@ vivo:researcherId
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The identification number given to the profile created by a researcher in ResearcherID (http://isiwebofknowledge.com/researcherid/)."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:hasPublicationVenue
       vitro:displayLimitAnnot
@@ -4435,8 +4239,6 @@ vivo:NonFacultyAcademic
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:annotates
-      vitro:fullPropertyNameAnnot
-              "annotates"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4447,8 +4249,6 @@ bibo:annotates
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "Critical or explanatory note for a Document."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4486,8 +4286,6 @@ geo:nameOfficialZH
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:reversedBy
-      vitro:fullPropertyNameAnnot
-              "reversedBy"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4498,8 +4296,6 @@ bibo:reversedBy
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A legal decision that reverses a ruling.  This relates the legal decision to the legal decision that reversed it."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4515,9 +4311,7 @@ vivo:majorField
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Major subject focus of the degree being described in an educational background."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:GDPNotes
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -4543,9 +4337,7 @@ bibo:upc
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The Universal Product Code (UPC) is a barcode symbology (i.e., a specific type of barcode), that is widely used in Canada and the United States for tracking trade items in stores."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:FacultyMember
       vitro:displayLimitAnnot
@@ -4608,9 +4400,7 @@ obo:ERO_0000016
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Institutional Review Board (IRB) number for a Clinical Trial"^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:Competition
       vitro:displayLimitAnnot
@@ -4657,8 +4447,6 @@ vivo:ResearchProposal
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:director
-      vitro:fullPropertyNameAnnot
-              "director"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4669,8 +4457,6 @@ bibo:director
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates an entity to a Film director."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4775,9 +4561,7 @@ bibo:lccn
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The Library of Congress Control Number or LCCN is a serially based system of numbering cataloging records in the Library of Congress in the United States."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 foaf:Group
       vitro:displayLimitAnnot
@@ -4864,8 +4648,6 @@ vivo:CoreLaboratory
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 <http://purl.org/dc/terms/relation>
-      vitro:fullPropertyNameAnnot
-              "relation"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4876,8 +4658,6 @@ vivo:CoreLaboratory
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "A related resource. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system. "^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4888,8 +4668,6 @@ skos:broader
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "50"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "broader term"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4900,8 +4678,6 @@ skos:broader
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a term that is broader in meaning (i.e. more general) to another term that is narrower in meaning, where the scope (meaning) of narrower term falls completely within the scope of the broader term."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -4970,13 +4746,9 @@ vivo:departmentOrSchool
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupaffiliation> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Name of department or school name used when describing educational background."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:court
-      vitro:fullPropertyNameAnnot
-              "court"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -4987,8 +4759,6 @@ bibo:court
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates a legal document with an organization.  Bibo definition is: \"A court associated with a legal document; for example, that which issues a decision.\""^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5099,8 +4869,6 @@ bibo:translator
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "14"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "translator"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5111,8 +4879,6 @@ bibo:translator
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates an information resource to the translator of the written document from one language to another."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5134,8 +4900,6 @@ vivo:distributesFundingFrom
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "64"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "distributes funding from"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5146,8 +4910,6 @@ vivo:distributesFundingFrom
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Indicates the organization that distributes funding from another organization. For example, indicates the source of flow-through funding."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5226,8 +4988,6 @@ skos:related
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "54"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "related"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5236,8 +4996,6 @@ skos:related
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This indicates when a term is related to another term in the same vocabulary."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean ;
       vitro:inPropertyGroupAnnot
@@ -5313,7 +5071,9 @@ vivo:governingAuthorityFor
       vitro:displayRankAnnot
               "70"^^xsd:int ;
       vitro:inPropertyGroupAnnot
-              <http://vivoweb.org/ontology#vitroPropertyGroupaddress> .
+              <http://vivoweb.org/ontology#vitroPropertyGroupaddress> ;
+      vitro:offerCreateNewOptionAnnot
+              "true"^^xsd:boolean .
 
 geo:agriculturalAreaYear
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -5329,8 +5089,6 @@ vivo:providesFundingThrough
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "65"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "provides funding through"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5341,8 +5099,6 @@ vivo:providesFundingThrough
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates a funding organization to another funding organization through which it provides its funding. Note that organizations may be asserted to be of more than one type."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5384,8 +5140,6 @@ vivo:end
               "false"^^xsd:boolean .
 
 bibo:interviewee
-      vitro:fullPropertyNameAnnot
-              "interviewee"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5396,8 +5150,6 @@ bibo:interviewee
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An agent that is interviewed by another agent."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5416,6 +5168,16 @@ vivo:researchOverview
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:editing
               "HTML"^^xsd:string .
+
+vivo:rorId
+      vitro:hiddenFromDisplayBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:hiddenFromPublishBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
+      vitro:inPropertyGroupAnnot
+              <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
+      vitro:prohibitedFromUpdateBelowRoleLevelAnnot
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 obo:ERO_0000390
       vitro:displayLimitAnnot
@@ -5465,8 +5227,6 @@ vivo:ResearcherRole
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:transcriptOf
-      vitro:fullPropertyNameAnnot
-              "transcriptOf"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5477,8 +5237,6 @@ bibo:transcriptOf
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "Relates a document to some transcribed original."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5491,8 +5249,6 @@ vivo:facilityFor
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 bibo:issuer
-      vitro:fullPropertyNameAnnot
-              "issuer"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5503,8 +5259,6 @@ bibo:issuer
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An entity responsible for issuing often informally published documents such as press releases, reports, etc."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -5521,8 +5275,6 @@ vivo:start
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "the start of a time interval."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "false"^^xsd:boolean .
 
@@ -5567,9 +5319,7 @@ bibo:oclcnum
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "An oclcnum is a sequential accession number assigned by OCLC as bibliographic records are entered into OCLC WorldCat (the OCLC Online Union Catalog)."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:isbn10
       vitro:displayLimitAnnot
@@ -5583,9 +5333,7 @@ bibo:isbn10
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The International Standard Book Number (ISBN) is a unique[1][2] numeric commercial book identifier based upon the 9-digit Standard Book Numbering (SBN) code created by Gordon Foster. The 10-digit ISBN format was developed by the International Organization for Standardization and was published in 1970 as international standard ISO 2108."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:MedicalResidency
       vitro:displayLimitAnnot
@@ -5738,8 +5486,6 @@ vivo:prerequisiteFor
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "42"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "prerequisite for"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -5767,9 +5513,7 @@ bibo:isbn13
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The International Standard Book Number (ISBN) is a unique[1][2] numeric commercial book identifier based upon the 9-digit Standard Book Numbering (SBN) code created by Gordon Foster.Since 1 January 2007, ISBNs have contained 13 digits, a format that is compatible with Bookland EAN-13s."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:cclCode
       vitro:displayLimitAnnot
@@ -5783,9 +5527,7 @@ vivo:cclCode
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The original and cross-reference US Classification(s) to which the published application was assigned at the time of publication -- includes both primary and secondary class information."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:hasNationality
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -5820,9 +5562,7 @@ bibo:uri
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Universal Resource Identifier of a document."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 obo:ERO_0000392
       vitro:inClassGroup <http://vivoweb.org/ontology#vitroClassGroupactivities> .
@@ -5833,8 +5573,6 @@ vivo:translatorOf
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "70"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "translatorOf"^^xsd:string ;
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibliographic> ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -5843,8 +5581,6 @@ vivo:translatorOf
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates something as the translator of an information resource."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean ;
       vitro:offerCreateNewOptionAnnot
@@ -5927,9 +5663,7 @@ bibo:eanucc13
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "EAN International-Uniform Code Council (EAN-UCC) was a supply chain standards family name, formally the EAN.UCC System, that included product barcodes which are printed on the great majority of products available in stores worldwide and electronic commerce standards."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:EditedBook
       vitro:displayLimitAnnot
@@ -6046,8 +5780,6 @@ vivo:hasTranslation
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "51"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "has translation"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -6058,8 +5790,6 @@ vivo:hasTranslation
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Relates an original documents to a translation of that document."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -6110,8 +5840,6 @@ vivo:dateIssued
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The date the patent was issued."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "false"^^xsd:boolean .
 
@@ -6219,9 +5947,7 @@ vivo:identifier
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "A parent property for institutional and other identifiers. This data property is not seen or updated by anyone."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 geo:populationNotes
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -6268,9 +5994,7 @@ vivo:totalAwardAmount
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This includes the direct cost being used for the grant activity plus indirect costs associated with administering the grant."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:Code
       vitro:displayLimitAnnot
@@ -6388,8 +6112,6 @@ vivo:distributes
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "70"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "distributes"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -6398,8 +6120,6 @@ vivo:distributes
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This can relate anything to the thing it distributes. The inverse of this is distributor and the foaf definition for distributor is as follows - Distributor of a document or a collection of documents. "^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -6505,8 +6225,6 @@ geo:codeAGROVOC
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 <http://purl.org/dc/terms/contributor>
-      vitro:fullPropertyNameAnnot
-              "contributor"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -6517,8 +6235,6 @@ geo:codeAGROVOC
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "An entity responsible for making contributions to the resource.  Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -6598,9 +6314,7 @@ vivo:hrJobTitle
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "A specific designation of a post within a human resource organization, normally associated with a job description that details the tasks and responsibilities that go with it."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 vivo:hasResearchArea
       vitro:customEntryFormAnnot
@@ -6636,9 +6350,7 @@ geo:hasCoordinate
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The full URI for the namespace."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:Report
       vitro:displayLimitAnnot
@@ -6751,8 +6463,6 @@ vivo:subcontractsGrant
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "63"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "subcontractsGrant"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -6763,8 +6473,6 @@ vivo:subcontractsGrant
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates the agency, entity or individual awarding the sub-contract for a grant to the grant itself."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -6857,8 +6565,6 @@ vivo:dateFiled
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The date the patent was filed."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "false"^^xsd:boolean .
 
@@ -6911,8 +6617,6 @@ vivo:Foundation
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:subsequentLegalDecision
-      vitro:fullPropertyNameAnnot
-              "subsequentLegalDecision"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -6923,8 +6627,6 @@ bibo:subsequentLegalDecision
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "A legal decision on appeal that takes action on a case (affirming it, reversing it, etc.)."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -6936,9 +6638,7 @@ bibo:coden
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupbibobscure> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> ;
-      vitro:publicDescriptionAnnot
-              "CODEN – according to ASTM standard E250 – is a six character, alphanumeric bibliographic code, that provides concise, unique and unambiguous identification of the titles of serials and non-serial publications from all subject areas."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#nobody> .
 
 vivo:OrganizerRole
       vitro:displayLimitAnnot
@@ -7011,9 +6711,7 @@ vivo:scopusId
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupidentifiers> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The numeric digit assigned to an author in Scopus.  In Scopus it's call the \"Author Identifier\"."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 bibo:Statute
       vitro:displayLimitAnnot
@@ -7154,9 +6852,7 @@ vivo:sponsorAwardId
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#selfEditor> ;
-      vitro:publicDescriptionAnnot
-              "Identifier of the organization that sponsored the award."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#selfEditor> .
 
 obo:ERO_0000543
       vitro:displayLimitAnnot
@@ -7230,8 +6926,6 @@ vivo:degreeCandidacy
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "25"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "degreeCandidacy"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -7242,8 +6936,6 @@ vivo:degreeCandidacy
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates an advisory relationship to an academic degree.  "^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -7276,8 +6968,6 @@ vivo:hasProceedings
               "5"^^xsd:int ;
       vitro:displayRankAnnot
               "30"^^xsd:int ;
-      vitro:fullPropertyNameAnnot
-              "hasProceedings"^^xsd:string ;
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:hiddenFromPublishBelowRoleLevelAnnot
@@ -7288,8 +6978,6 @@ vivo:hasProceedings
               "true"^^xsd:boolean ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "This relates a conference proceeding to the conference that produced the proceeding."^^xsd:string ;
       vitro:selectFromExistingAnnot
               "true"^^xsd:boolean .
 
@@ -7313,9 +7001,7 @@ bibo:edition
       vitro:inPropertyGroupAnnot
               <http://vivoweb.org/ontology#vitroPropertyGroupoverview> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "The name defining a special edition of a document. Normally its a literal value composed of a version number and words."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:nameShortZH
       vitro:hiddenFromDisplayBelowRoleLevelAnnot
@@ -7347,9 +7033,7 @@ vivo:dateTime
       vitro:hiddenFromPublishBelowRoleLevelAnnot
               <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
       vitro:prohibitedFromUpdateBelowRoleLevelAnnot
-              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> ;
-      vitro:publicDescriptionAnnot
-              "Use when a single date and time is appropriate versus a start date and time and end date and time, or when multiple dates and times are relevant."^^xsd:string .
+              <http://vitro.mannlib.cornell.edu/ns/vitro/role#public> .
 
 geo:codeUN
       vitro:hiddenFromDisplayBelowRoleLevelAnnot

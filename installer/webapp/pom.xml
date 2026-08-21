@@ -2,18 +2,15 @@
     xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.vivoweb</groupId>
     <artifactId>vivo-installer-vivo</artifactId>
-    <version>1.11.2-SNAPSHOT</version>
+    <version>1.15.1-SNAPSHOT</version>
     <packaging>war</packaging>
-
     <parent>
         <groupId>org.vivoweb</groupId>
         <artifactId>vivo-installer</artifactId>
-        <version>1.11.2-SNAPSHOT</version>
+        <version>1.15.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -30,6 +27,34 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>include-home</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.vivoweb</groupId>
+                                            <artifactId>vivo-installer-home</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>tar</type>
+                                            <outputDirectory>
+                                                target/${app-name}/WEB-INF/resources/home-files</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
                         <configuration>
                             <archive>
@@ -44,17 +69,6 @@
                                     <artifactId>vivo-webapp</artifactId>
                                     <type>war</type>
                                 </overlay>
-                                <!-- Overlays for multilingual support -->
-                                <!-- overlay>
-                                    <groupId>org.vivoweb</groupId>
-                                    <artifactId>vitro-languages-webapp</artifactId>
-                                    <type>war</type>
-                                </overlay>
-                                <overlay>
-                                    <groupId>org.vivoweb</groupId>
-                                    <artifactId>vivo-languages-webapp</artifactId>
-                                    <type>war</type>
-                                </overlay -->
                             </overlays>
                             <webResources>
                                 <resource>
@@ -68,53 +82,19 @@
             </build>
         </profile>
         <profile>
-            <id>install</id>
+            <id>deploy</id>
             <activation>
                 <property><name>tomcat-dir</name></property>
             </activation>
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>remove-webapp</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <target>
-                                        <delete dir="${tomcat-dir}/webapps/${project.build.finalName}" />
-                                    </target>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>${project.groupId}</groupId>
-                                            <artifactId>${project.artifactId}</artifactId>
-                                            <version>${project.version}</version>
-                                            <type>war</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${tomcat-dir}/webapps/${project.build.finalName}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <configuration>
+                            <outputDirectory>${tomcat-dir}/webapps/</outputDirectory>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -152,20 +132,6 @@
             <artifactId>vivo-webapp</artifactId>
             <type>war</type>
         </dependency>
-        <!-- Dependencies for multilingual support -->
-        <!-- dependency>
-            <groupId>org.vivoweb</groupId>
-            <artifactId>vitro-languages-webapp</artifactId>
-            <version>[2.0.0,2.1.0)</version>
-            <type>war</type>
-        </dependency>
-        <dependency>
-            <groupId>org.vivoweb</groupId>
-            <artifactId>vivo-languages-webapp</artifactId>
-            <version>[2.0.0,2.1.0)</version>
-            <type>war</type>
-        </dependency -->
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>

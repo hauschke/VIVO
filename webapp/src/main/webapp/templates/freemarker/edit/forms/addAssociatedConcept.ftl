@@ -46,10 +46,10 @@
                  <div class="row">
                      <div class="col-12">
                          <div class="column conceptLabelInfo">
-                            <h4>Concept (Type)</h4>
+                            <h4>${i18n().concept_type}</h4>
                          </div>
                          <div class="column conceptVocabSource">
-                            <h4>Vocabulary Source</h4>
+                            <h4>${i18n().vocabulary_source}</h4>
                          </div>
                          <div class="column conceptRemoval">&nbsp;
                          </div>
@@ -109,7 +109,7 @@
     <input type="submit" value="${i18n().add_concept}" id="showAddFormButton" name="showAddFormButton">  ${i18n().or}
     <a class="cancel" href="${cancelUrl}&url=/individual" title="${i18n().return_to_profile}">${i18n().return_to_profile}</a>
 </div>
-    <form id="addConceptForm" class="customForm" action="${submitUrl}">
+    <form id="addConceptForm" class="customForm" method="POST" action="${submitUrl}">
 		<#assign checkedSource = false />
 	<h4 class="services">${i18n().external_vocabulary_services}</h4>
     <#list sources?values?sort_by("label") as thisSource>
@@ -173,27 +173,27 @@ var vocabSpecificDisplay = {};
 vocabSpecificDisplay["${vocab}"] = "${vocabSpecificDisplay[vocab]}";
 </#list>
 var i18nStrings = {
-    vocServiceUnavailable: '${i18n().vocabulary_service_unavailable}',
-    noResultsFound: '${i18n().no_serch_results_found}',
-    defaultLabelTypeString: '${i18n().label_type}',
-    definitionString: '${i18n().definition_capitalized}',
-    bestMatchString: '${i18n().best_match}',
-    selectTermFromResults: '${i18n().select_term_from_results}',
-    selectVocSource: '${i18n().select_vocabulary_source_to_search}',
-    confirmTermDelete: '${i18n().confirm_term_deletion}',
-    errorTernNotRemoved: '${i18n().error_term_not_deleted}',
+    vocServiceUnavailable: '${i18n().vocabulary_service_unavailable?js_string}',
+    noResultsFound: '${i18n().no_serch_results_found?js_string}',
+    defaultLabelTypeString: '${i18n().label_type?js_string}',
+    definitionString: '${i18n().definition_capitalized?js_string}',
+    bestMatchString: '${i18n().best_match?js_string}',
+    selectTermFromResults: '${i18n().select_term_from_results?js_string}',
+    selectVocSource: '${i18n().select_vocabulary_source_to_search?js_string}',
+    confirmTermDelete: '${i18n().confirm_term_deletion?js_string}',
+    errorTernNotRemoved: '${i18n().error_term_not_deleted?js_string}',
     vocabSpecificLabels: vocabSpecificDisplay,
-    displayMoreEllipsis: '${i18n().display_more_ellipsis}',
-    displayLess: '${i18n().display_less}',
-    showMoreContent: '${i18n().show_more_content}'
+    displayMoreEllipsis: '${i18n().display_more_ellipsis?js_string}',
+    displayLess: '${i18n().display_less?js_string}',
+    showMoreContent: '${i18n().show_more_content?js_string}'
 };
 </script>
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/addConcept.css" />')}
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>')}
+${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/json2.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>')}

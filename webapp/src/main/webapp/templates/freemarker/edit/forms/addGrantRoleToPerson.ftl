@@ -167,16 +167,16 @@ var customFormData  = {
     flagClearLabelForExisting: '${flagClearLabelForExisting}'
     };
     var i18nStrings = {
-        selectAnExisting: '${i18n().select_an_existing}',
-        orCreateNewOne: '${i18n().or_create_new_one}',
-        selectedString: '${i18n().selected}'
+        selectAnExisting: '${i18n().select_an_existing?js_string}',
+        selectAnExistingOrCreateNewOne: '${i18n().select_an_existing_or_create_a_new_one?js_string}',
+        selectedString: '${i18n().selected?js_string}'
     };
 </script>
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customFormWithAutocomplete.css" />')}
 
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>')}
+${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/templates/freemarker/edit/forms/js/customFormWithAutocomplete.js"></script>')}
