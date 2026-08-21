@@ -20,6 +20,11 @@
     </#if>	
 </#if>	
 
+
+<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.core.umd.js"></script>
+<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.dom.umd.js"></script>
+<script src="${urls.base}/js/tooltip/tooltip-utils.js"></script>
+
 <#include "stylesheets.ftl">
 <#-- <link rel="stylesheet" href="${urls.theme}/css/screen.css" /> -->
 
@@ -32,5 +37,9 @@
 <#-- Inject head content specified in the controller. Currently this is used only to generate an rdf link on 
 an individual profile page. -->
 ${headContent!}
+
+<#if customCssPath?has_content >
+    <link id="custom-css-path" rel="stylesheet" href="${customCssPath}">
+</#if>
 
 <link rel="shortcut icon" type="image/x-icon" href="${urls.base}/favicon.ico">

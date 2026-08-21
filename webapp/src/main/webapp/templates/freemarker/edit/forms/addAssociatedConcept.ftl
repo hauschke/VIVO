@@ -109,7 +109,7 @@
     <input type="submit" value="${i18n().add_concept}" id="showAddFormButton" name="showAddFormButton">  ${i18n().or}
     <a class="cancel" href="${cancelUrl}&url=/individual" title="${i18n().return_to_profile}">${i18n().return_to_profile}</a>
 </div>
-    <form id="addConceptForm" class="customForm" action="${submitUrl}">
+    <form id="addConceptForm" class="customForm" method="POST" action="${submitUrl}">
 		<#assign checkedSource = false />
 	<h4 class="services">${i18n().external_vocabulary_services}</h4>
     <#list sources?values?sort_by("label") as thisSource>
@@ -189,11 +189,11 @@ var i18nStrings = {
 };
 </script>
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/addConcept.css" />')}
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>')}
+${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/json2.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>')}
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>')}

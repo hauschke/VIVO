@@ -198,14 +198,6 @@ uil-data:vis_next_link.VIVO
         uil:hasKey      "vis_next_link" ;
         uil:hasPackage  "VIVO-languages" .
 
-uil-data:resource_name.VIVO
-        rdf:type         owl:NamedIndividual ;
-        rdf:type         uil:UILabel ;
-        rdfs:label       "resource name"@en-CA ;
-        uil:hasApp      "VIVO" ;
-        uil:hasKey      "resource_name" ;
-        uil:hasPackage  "VIVO-languages" .
-
 uil-data:check_grants_to_exclude.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -6266,3 +6258,31 @@ uil-data:degree_candidacy.VIVO
         uil:hasApp      "VIVO" ;
         uil:hasKey      "degree_candidacy" ;
         uil:hasPackage  "VIVO-languages" .
+
+uil-data:vis_coauthor_vcard.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Include external co-authors"@en-CA ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "vis_coauthor_vcard" .
+
+uil-data:add_to_person_profile.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Add to person’s profile page?"@en-CA ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "add_to_person_profile" .
+
+uil-data:yes_add_to_person_profile.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Yes"@en-CA ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "yes_add_to_person_profile" .
+
+uil-data:no_add_to_person_profile.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "No"@en-CA ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "no_add_to_person_profile" .
