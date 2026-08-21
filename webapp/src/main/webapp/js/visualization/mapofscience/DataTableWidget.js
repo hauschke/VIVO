@@ -109,7 +109,16 @@ var DataTableWidget = Class.extend({
 		    	'<span id="' + dom.secondFilterID + '" class="' + dom.filterOptionClass + '">' + dom.secondFilterLabel + '</span>' +
 		    	'<img class="'+ dom.filterInfoIconClass +'" id="imageIconTwo" src="'+ infoIconUrl +'" alt="information icon" title="" /></div>');
 		me.tableDiv.append(filter);
-		createToolTip($("#imageIconTwo"), $('#toolTipTwo').html(), "top left");
+
+		const tooltipDataImageIconTwo = {
+			title: "<div>" + $('#toolTipTwo').html() + "</div>",
+			customClass: "vitroTooltip vitroTooltip-yellow",
+			placements: ['right', 'top', 'bottom', 'left'],	
+        }
+
+		setTooltip("#imageIconTwo", tooltipDataImageIconTwo)
+
+
 		initFilter(dom);
 
 		var table = $('<table>');
@@ -172,13 +181,13 @@ var DataTableWidget = Class.extend({
 		table.append(tbody);
 		me.tableDiv.append(table);
 
-		table.children("tbody").children("tr").mouseenter(function() {
+		table.children("tbody").children("tr").on("mouseenter", function() {
 
 			var params = me.parseIDIntoScienceTypeAreaID($(this).attr("id"));
 			me.sciMapWidget.mouseIn(params[0], params[1]);
 		});
 
-		table.children("tbody").children("tr").mouseleave(function() {
+		table.children("tbody").children("tr").on("mouseleave", function() {
 
 			var params = me.parseIDIntoScienceTypeAreaID($(this).attr("id"));
 			me.sciMapWidget.mouseOut(params[0], params[1]);
@@ -195,27 +204,27 @@ var DataTableWidget = Class.extend({
 			$.fn.dataTableExt.afnFiltering.push(disciplineOrSubdisciplineDataTableFilter);
 		}
 
-		me.widget = table.dataTable({
-		    "sDom": '<"' + me.dom.searchBarParentContainerClass
+		me.widget = table.dataTable('#datatable', {
+		    "dom": '<"' + me.dom.searchBarParentContainerClass
 		    			+ '"f><"filterInfo"i><"'
 		    			+ me.dom.paginationContainerClass + '"p><"table-separator"><"datatablewrapper"t>',
-		    "aaSorting": [
+		    "order": [
 		        [2, "desc"], [1,'asc']
 		    ],
-		    "asStripClasses": [],
-		    "aoColumns": [{ "bVisible": false, "bSearchable": false },
+		    "stripeClasses": [],
+		    "columns": [{ "bVisible": false, "bSearchable": false },
 		                  null,
 		                  null,
 		                  null],
-		    "iDisplayLength": 13,
-		    "bInfo": true,
-		    "oLanguage": {
-				"sInfo": "_START_ - _END_ of _TOTAL_",
-				"sInfoEmpty": i18nStrings.noMatchingScienceAreas,
-				"sInfoFiltered": ""
+		    "pageLength": 13,
+		    "info": true,
+		    "language": {
+				"info": "_START_ - _END_ of _TOTAL_",
+				"infoEmpty": i18nStrings.noMatchingScienceAreas,
+				"infoFiltered": ""
 			},
-		    "sPaginationType": "gmail_style",
-		    "fnDrawCallback": function () {
+		    "paginationType": "gmail_style",
+		    "drawCallback": function () {
 
 		        /* We check whether max number of allowed comparisions (currently 10) is reached
 		         * here as well becasue the only function that is guaranteed to be called during
@@ -227,15 +236,22 @@ var DataTableWidget = Class.extend({
 		});
 
 
-		var searchInputBox = $("." + me.dom.searchBarParentContainerClass).find("input[type=text]");
+		var searchInputBox = $("." + me.dom.searchBarParentContainerClass).find("input[type=search]");
 		searchInputBox.css("width", "140px");
-		searchInputBox.after("<span id='reset-search' title='" + i18nStrings.clearSearchQuery + "'>X</span>"
-								+ "<img class='filterInfoIcon' id='searchInfoIcon' src='" + infoIconUrl
+		searchInputBox.after("<img class='filterInfoIcon' id='searchInfoIcon' src='" + infoIconUrl
 								+ "' alt='" + i18nStrings.infoIconString + "' title='' />");
 		$( document ).on('click', "#reset-search", function() {
 			me.widget.fnFilter("");
 		});
-		createToolTip($("#searchInfoIcon"), $('#searchInfoTooltipText').html(), "top left");
+
+		const tooltipDataSearchInfoIcon = {
+			title: "<div>" + $('#searchInfoTooltipText').html() + "</div>",
+			customClass: "vitroTooltip vitroTooltip-yellow",
+			placements: ['right', 'top', 'bottom', 'left'],	
+        }
+
+		setTooltip("#searchInfoIcon", tooltipDataSearchInfoIcon)
+
 
 		var csvButton = '<hr class="subtle-hr"/><div id="main-science-areas-table-footer"><a id="csv" href="' +
 						entityMapOfScienceSubDisciplineCSVURL +

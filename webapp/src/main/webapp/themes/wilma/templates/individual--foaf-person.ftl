@@ -98,7 +98,7 @@
                         <#if (title.statements?size < 1) >
                             <@p.addLinkWithLabel title editable />
                         <#elseif editable>
-                            <h2>${title.name?capitalize!}</h2>
+                            <h2>${title.name}</h2>
                             <@p.verboseDisplay title />
                         </#if>
                         <#list title.statements as statement>
@@ -169,6 +169,7 @@
         displayMoreEllipsis: '${i18n().display_more_ellipsis?js_string}',
         showMoreContent: '${i18n().show_more_content?js_string}',
         verboseTurnOff: '${i18n().verbose_turn_off?js_string}',
+        exportQrCodes: '${i18n().export_qr_codes?js_string}',
         researchAreaTooltipOne: '${i18n().research_area_tooltip_one?js_string}',
         researchAreaTooltipTwo: '${i18n().research_area_tooltip_two?js_string}'
     };
@@ -181,18 +182,16 @@
 
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual.css" />',
                   '<link rel="stylesheet" href="${urls.base}/css/individual/individual-vivo.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />',
-                  '<link rel="stylesheet" type="text/css" href="${urls.base}/css/jquery_plugins/qtip/jquery.qtip.min.css" />')}
+                  '<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/tiny_mce/tiny_mce.js"></script>',
-                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip.min.js"></script>',
                   '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>')}
 
 ${scripts.add('<script type="text/javascript" src="${urls.base}/js/individual/individualUtils.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/individual/individualQtipBubble.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/js/individual/individualTooltipBubble.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>',
 			  '<script type="text/javascript" src="${urls.base}/js/individual/moreLessController.js"></script>',
-              '<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+              '<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
               '<script type="text/javascript" src="${urls.base}/js/imageUpload/imageUploadUtils.js"></script>',
               '<script async type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>',
               '<script async type="text/javascript" src="//cdn.plu.mx/widget-popup.js"></script>')}

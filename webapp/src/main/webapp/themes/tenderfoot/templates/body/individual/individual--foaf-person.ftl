@@ -33,7 +33,7 @@
 </section>
 
 <section id="individual-intro" class="vcard person" role="region"><span itemscope itemtype="http://schema.org/Person">
-	<div class="row row-eq-height">
+	<div class="row-eq-height">
 		<div class="col-md-2 photo-wrapper">
 			<!-- Image -->
 		<#assign individualImage>
@@ -57,9 +57,11 @@
 						<img id="uriIcon" title="${individual.uri}" src="${urls.images}/individual/uriIcon.gif" alt="${i18n().uri_icon}"/>
 						<#if checkNamesResult?has_content >
 							<img id="qrIcon"  src="${urls.images}/individual/qr_icon.png" alt="${i18n().qr_icon}" />
-								<span id="qrCodeImage" class="hidden">${qrCodeLinkedImage!}
-									<a class="qrCloseLink" href="#"  title="${i18n().qr_code}">${i18n().close_capitalized}</a>
-								</span>
+								<div id="qrCodeContainer">
+									<span id="qrCodeImage" class="bottomLeftAnchor hidden">${qrCodeLinkedImage!}
+										<a class="qrCloseLink" href="#"  title="${i18n().qr_code}">${i18n().close_capitalized}</a>
+									</span>
+								</div>
 						</#if>
 					</span>
 					<section class="vcard person">
@@ -74,7 +76,7 @@
 								<#if (title.statements?size < 1) >
 									<@p.addLinkWithLabel title editable />
 								<#elseif editable>
-									<h2>${title.name?capitalize!}</h2>
+									<h2>${title.name}</h2>
 									<@p.verboseDisplay title />
 								</#if>
 								<#list title.statements as statement>
@@ -166,6 +168,7 @@
         displayMoreEllipsis: '${i18n().display_more_ellipsis?js_string}',
         showMoreContent: '${i18n().show_more_content?js_string}',
         verboseTurnOff: '${i18n().verbose_turn_off?js_string}',
+        exportQrCodes: '${i18n().export_qr_codes?js_string}',
         researchAreaTooltipOne: '${i18n().research_area_tooltip_one?js_string}',
         researchAreaTooltipTwo: '${i18n().research_area_tooltip_two?js_string}'
     };
@@ -179,20 +182,22 @@
 ${stylesheets.add(
 	'<link rel="stylesheet" href="${urls.base}/css/individual/individual.css" />',
 	'<link rel="stylesheet" href="${urls.base}/css/individual/individual-vivo.css" />',
-	'<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />',
-	'<link rel="stylesheet" type="text/css" href="${urls.base}/css/jquery_plugins/qtip/jquery.qtip.min.css" />'
+	'<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />'
 )}
 
 ${headScripts.add(
 	'<script type="text/javascript" src="${urls.base}/js/tiny_mce/tiny_mce.js"></script>',
-	'<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip.min.js"></script>',
-	'<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>'
-)}
+	'<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>',
+
+    '<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.core.umd.js"></script>',
+	'<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.dom.umd.js"></script>',
+	'<script type="text/javascript" src="${urls.base}/js/tooltip/tooltip-utils.js"></script>'
+ )}
 
 ${scripts.add(
-	'<script async type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+	'<script async type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
 	'<script async type="text/javascript" src="${urls.base}/js/individual/individualUtils.js"></script>',
-	'<script async type="text/javascript" src="${urls.base}/js/individual/individualQtipBubble.js"></script>',
+	'<script async type="text/javascript" src="${urls.base}/js/individual/individualTooltipBubble.js"></script>',
 	'<script async type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>',
     '<script async type="text/javascript" src="${urls.base}/js/individual/moreLessController.js"></script>',
 	'<script async type="text/javascript" src="${urls.base}/js/imageUpload/imageUploadUtils.js"></script>',

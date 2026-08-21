@@ -104,7 +104,7 @@ Set this flag on the input acUriReceiver where you would like this behavior to o
       <select id="typeSelector" name="presentationType" acGroupName="presentation">
         <option value="" selected="selected">${i18n().select_one}</option>
         <#list presentationTypeOpts?keys as key>
-            <option value="${key}" <#if presentationTypeValue = key>selected</#if>><#if presentationTypeOpts[key] == "Other">${i18n().presentation_capitalized}<#else>${presentationTypeOpts[key]}</#if></option>
+            <option value="${key}" <#if presentationTypeValue = key>selected</#if>>${presentationTypeOpts[key]}</option>
         </#list>
     </select>
     </p>
@@ -185,17 +185,17 @@ var customFormData  = {
 };
 var i18nStrings = {
     selectAnExisting: '${i18n().select_an_existing?js_string}',
-    orCreateNewOne: '${i18n().or_create_new_one?js_string}',
+    selectAnExistingOrCreateNewOne: '${i18n().select_an_existing_or_create_a_new_one?js_string}',
     selectedString: '${i18n().selected?js_string}'
 };
 </script>
 
 
-${stylesheets.add('<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />')}
+${stylesheets.add('<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customForm.css" />')}
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/templates/freemarker/edit/forms/css/customFormWithAutocomplete.css" />')}
 
-${scripts.add('<script type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+${scripts.add('<script type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/customFormUtils.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/extensions/String.js"></script>',
              '<script type="text/javascript" src="${urls.base}/js/browserUtils.js"></script>',

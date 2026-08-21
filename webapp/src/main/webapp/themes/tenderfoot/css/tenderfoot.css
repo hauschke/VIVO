@@ -201,6 +201,9 @@ input.search-vivo {
     margin-top: 5px;
     padding: 0;
 }
+input[type="search" i] {
+    margin: 2px;
+}
 #search-form-modifier {
     display: none;
 }
@@ -361,4 +364,23 @@ section#container div {
 img.add-individual {
     height: 15px;
     width: 15px;
+}
+
+#individual-intro {
+    overflow: unset;
+}
+
+/* ------------------------------------------------->  */
+/* TOOLTIP  ---------------------------------------->  */
+/* ------------------------------------------------->  */
+
+#qrCodeContainer {
+    position: absolute;
+    right: 380px;
+}
+
+span#qrCodeImage.bottomLeftAnchor {
+    top: 23px;
+    right: 25px;
+    left: initial;
 }

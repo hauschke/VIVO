@@ -175,6 +175,7 @@ var i18nStrings = {
     displayMoreEllipsis: '${i18n().display_more_ellipsis?js_string}',
     showMoreContent: '${i18n().show_more_content?js_string}',
     verboseTurnOff: '${i18n().verbose_turn_off?js_string}',
+    exportQrCodes: '${i18n().export_qr_codes?js_string}',
     standardviewTooltipOne: '${i18n().standardview_tooltip_one?js_string}',
     standardviewTooltipTwo: '${i18n().standardview_tooltip_two?js_string}',
     researchAreaTooltipOne: '${i18n().research_area_tooltip_one?js_string}',
@@ -190,17 +191,20 @@ var i18nStringsUriRdf = {
 ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/individual/individual.css" />',
                   '<link rel="stylesheet" href="${urls.base}/css/individual/individual-vivo.css" />',
                   '<link rel="stylesheet" href="${urls.base}/css/individual/individual-2column-view.css" />',
-                  '<link rel="stylesheet" href="${urls.base}/js/jquery-ui/css/smoothness/jquery-ui-1.12.1.css" />',
-                  '<link rel="stylesheet" type="text/css" href="${urls.base}/css/jquery_plugins/qtip/jquery.qtip.min.css" />')}
+                  '<link rel="stylesheet" href="${urls.base}/webjars/jquery-ui-themes/smoothness/jquery-ui.min.css" />')}
 
 ${headScripts.add('<script type="text/javascript" src="${urls.base}/js/tiny_mce/tiny_mce.js"></script>',
-                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/qtip/jquery.qtip.min.js"></script>',
                   '<script type="text/javascript" src="${urls.base}/js/json2.js"></script>',
-                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>')}
+                  '<script type="text/javascript" src="${urls.base}/js/jquery_plugins/jquery.truncator.js"></script>',
+                  
+                  '<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.core.umd.js"></script>',
+                  '<script type="text/javascript" src="${urls.base}/webjars/floatingui/floating-ui.dom.umd.js"></script>',
+                  '<script type="text/javascript" src="${urls.base}/js/tooltip/tooltip-utils.js"></script>')}
+                  
 
 ${scripts.add('<script async type="text/javascript" src="${urls.base}/js/individual/individualUriRdf.js"></script>',
-              '<script async type="text/javascript" src="${urls.base}/js/individual/individualQtipBubble.js"></script>',
-              '<script async type="text/javascript" src="${urls.base}/js/jquery-ui/js/jquery-ui-1.12.1.min.js"></script>',
+              '<script async type="text/javascript" src="${urls.base}/js/individual/individualTooltipBubble.js"></script>',
+              '<script async type="text/javascript" src="${urls.base}/webjars/jquery-ui/jquery-ui.min.js"></script>',
               '<script async type="text/javascript" src="${urls.base}/js/individual/individualUtils.js?vers=1.5.1"></script>',
 			  '<script async type="text/javascript" src="${urls.base}/js/individual/moreLessController.js"></script>',
               '<script async type="text/javascript" src="${urls.base}/js/individual/individualProfilePageType.js"></script>',
