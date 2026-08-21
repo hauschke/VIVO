@@ -40,8 +40,8 @@
         </developer>
     </developers>
 
-    <!-- The SCM repository location is used by Continuum to update against 
-        when changes have occurred. This spawns a new build cycle and releases snapshots 
+    <!-- The SCM repository location is used by Continuum to update against
+        when changes have occurred. This spawns a new build cycle and releases snapshots
         into the snapshot repository below. -->
     <scm>
         <connection>scm:git:git@github.com:vivo-project/VIVO.git</connection>
@@ -188,15 +188,12 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.6.0</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-                            <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
-                            <stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
+                            <publishingServerId>central</publishingServerId>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -332,7 +329,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Used to validate all code style rules in source code using 
+            <!-- Used to validate all code style rules in source code using
                 Checkstyle -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -341,7 +338,7 @@
                 <executions>
                     <execution>
                         <id>verify-style</id>
-                        <!-- Bind to verify so it runs after package & unit 
+                        <!-- Bind to verify so it runs after package & unit
                             tests, but before install -->
                         <phase>verify</phase>
                         <goals>
@@ -441,11 +438,6 @@
                     <artifactId>buildnumber-maven-plugin</artifactId>
                     <version>1.4</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>1.6.7</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -477,10 +469,10 @@
                         </reports>
                     </reportSet>
                     <reportSet>
-                        <!-- aggregate reportSet, to define in poms 
+                        <!-- aggregate reportSet, to define in poms
                             having modules -->
                         <id>aggregate</id>
-                        <inherited>false</inherited> <!-- don't run aggregate 
+                        <inherited>false</inherited> <!-- don't run aggregate
                             in child modules -->
                         <reports>
                             <report>aggregate</report>
@@ -505,8 +497,8 @@
         </plugins>
     </reporting>
 
-    <!-- Add a custom repository, which is actually just a simple GitHub 
-        project in order to distribute some dependencies that aren't part of Maven 
+    <!-- Add a custom repository, which is actually just a simple GitHub
+        project in order to distribute some dependencies that aren't part of Maven
         central -->
     <repositories>
         <repository>
@@ -516,15 +508,20 @@
         </repository>
 
         <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>central</id>
+            <name>Sonatype Central Snapshots</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </repository>
+
+        <repository>
+            <id>central-maven</id>
+            <url>https://repo.maven.apache.org/maven2</url>
         </repository>
     </repositories>
 
@@ -533,13 +530,10 @@
             <id>vivo-project</id>
             <url>https://vivo-project.github.io/</url>
         </site>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+        
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>central</id>
+            <url>https://central.sonatype.com/api/v1/publisher</url>
         </repository>
     </distributionManagement>
 </project>
