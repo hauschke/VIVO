@@ -198,14 +198,6 @@ uil-data:vis_next_link.VIVO
         uil:hasKey      "vis_next_link" ;
         uil:hasPackage  "VIVO-languages" .
 
-uil-data:resource_name.VIVO
-        rdf:type         owl:NamedIndividual ;
-        rdf:type         uil:UILabel ;
-        rdfs:label       "resource name"@en-CA ;
-        uil:hasApp      "VIVO" ;
-        uil:hasKey      "resource_name" ;
-        uil:hasPackage  "VIVO-languages" .
-
 uil-data:check_grants_to_exclude.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -6277,7 +6269,7 @@ uil-data:vis_coauthor_vcard.VIVO
 uil-data:add_to_person_profile.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
-        rdfs:label       ""Add to person’s profile page?"@en-CA ;
+        rdfs:label       "Add to person’s profile page?"@en-CA ;
         uil:hasApp       "VIVO" ;
         uil:hasKey       "add_to_person_profile" .
 
