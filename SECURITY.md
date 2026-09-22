@@ -17,4 +17,4 @@ When reporting a vulnerability, please include as much of the following informat
 We will acknowledge receipt of the report and investigate the issue. Please allow us reasonable time to assess and address a vulnerability before publicly disclosing it.
 
 ## Supported versions
-Security fixes are provided for the last two major releases. 
+Security fixes are typically provided for the last two minor releases.
